@@ -31,7 +31,10 @@
                             <div class="col-md-6 col-12">
                                 <input type="text" name="companyNo" class="form-or-style"/>
                             </div>
-                            <div class="col-md-6 col-12">
+                             <div class="col-md-3 col-12">
+                                <button onclick="search1()" type="button" class="btn-black w-100">ยืนยัน</button>
+                            </div>
+                            <div class="col-md-12 col-12">
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="companyName">ชื่อบริษัท*</label>
@@ -120,8 +123,11 @@
                             <div class="col-md-6 col-12">
                                 <input type="text" name="companyNo" class="form-or-style"/>
                             </div>
+                             <div class="col-md-3 col-12">
+                                 <button onclick="search2()" type="button" class="btn-black w-100">ยืนยัน</button>
+                            </div>
                             <!-- pc button -->
-                            <div class="col-md-6 col-12 d-none d-md-block d-lg-block d-xl-block d-xxl-block">
+                            <div class="col-md-3 col-12 d-none d-md-block d-lg-block d-xl-block d-xxl-block">
                                 <button onclick="copyAddress()" type="button" class="btn-black">สำเนาที่อยู่ด้านบน</button>
                             </div>
                             <div class="col-md-6 col-12">
