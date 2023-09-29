@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head><?php require('inc_header.php'); ?>
+<head>@include('layouts.inc_header')
 </head>
 <body>
-<?php require('inc_topmenu.php'); ?>
+@include('layouts.inc_topmenu')
 
 
     <div class="container">
@@ -12,7 +12,8 @@
         <!-- MultiStep Form -->
         <div class="row">
             <div class="col-12">
-                <form id="msform">
+                <form id="msform" action="{{url('form-request-service')}}">
+                    @csrf
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active">ข้อมูลลูกค้า</li>
@@ -21,10 +22,10 @@
                     </ul>
 
                     <!-- form ข้อมูลลูกค้า -->
-                    <fieldset>
+                    <fieldset id="T1" >
                         <!-- form ข้อมูลลูกค้า -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า (บริษัทเจ้าของเครื่องมือ)</h6>
-                        <div class="row py-2">
+                        <div id="a1" class="row py-2">
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
@@ -34,85 +35,85 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="companyName">ชื่อบริษัท*</label>
-                                <input type="text" name="companyName" class="form-or-style"/>
+                                <input type="text" name="companyName1" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="department">แผนก/หน่วยงาน</label>
-                                <input type="text" name="department" class="form-or-style"/>
+                                <input type="text" name="department1" class="form-or-style"/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="companyAddress">ที่อยู่*</label>
-                                <textarea id="companyAddress" name="companyAddress" rows="3" class="form-or-style"></textarea>
+                                <textarea id="companyAddress" name="companyAddress1" rows="3" class="form-or-style" required></textarea>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province" class="form-or-style">
-                                    <option value="">กรุงเทพมหานคร</option>
-                                    <option value="">กาญจนบุรี</option>
-                                    <option value="">กาฬสินธุ์</option>
+                                <select name="province1" class="form-or-style" required>
+                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode" class="form-or-style"/>
+                                <input type="text" name="zipcode1" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
-                                <input type="text" name="tel" class="form-or-style"/>
+                                <input type="text" name="tel1" class="form-or-style"/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="fax">แฟกซ์</label>
-                                <input type="text" name="fax" class="form-or-style"/>
+                                <input type="text" name="fax1" class="form-or-style"/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="taxpayerNo">เลขผู้เสียภาษีอากร*</label>
-                                <input type="text" name="taxpayerNo" class="form-or-style"/>
+                                <input type="text" name="taxpayerNo1" class="form-or-style" required/>
                             </div>
                             <div class="col-12 py-2">
                                 <label for="companyType">ประเภทบริษัท</label>
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-3 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="companyTypeInfo" id="companyType1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="companyTypeInfo1" id="companyType1" value="สำนักงานใหญ่" checked>
                                             <label class="form-check-label" for="companyType1">สำนักงานใหญ่</label>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="companyTypeInfo" id="companyType2" value="">
+                                            <input class="form-check-input" type="radio" name="companyTypeInfo1" id="companyType2" value="สาขาที่">
                                             <label class="form-check-label" for="companyType2">สาขาที่</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
-                                        <input type="text" name="companyTypeName" class="form-or-style"/>
+                                        <input type="text" name="companyTypeName1" class="form-or-style"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="contactName">ชื่อผู้ติดต่อ*</label>
-                                <input type="text" name="contactName" class="form-or-style"/>
+                                <input type="text" name="contactName1" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="email">อีเมล*</label>
-                                <input type="email" name="email" class="form-or-style"/>
+                                <input type="email" name="email1" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="contactTel">โทรศัพท์ผู้ติดต่อ*</label>
-                                <input type="text" name="contactTel" class="form-or-style"/>
+                                <input type="text" name="contactTel1" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="lineId">Line ID</label>
-                                <input type="text" name="lineId" class="form-or-style"/>
+                                <input type="text" name="lineId1" class="form-or-style"/>
                             </div>
                         </div>
                         <!-- end: form ข้อมูลลูกค้า -->
 
                         <!-- form ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี (ใบเสนอราคา, ใบแจ้งหนี้/ใบกำกับภาษี/ใบเสร็จ)</h6>
-                        <div class="row py-2">
+                        <div id="a2" class="row py-2">
                             <!-- mobile button -->
                             <div class="col-md-6 col-12 d-block d-md-none mb-3">
-                                <button type="button" class="btn-black w-100">สำเนาที่อยู่ด้านบน</button>
+                                <button onclick="copyAddress()" type="button" class="btn-black w-100">สำเนาที่อยู่ด้านบน</button>
                             </div>
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
@@ -121,61 +122,61 @@
                             </div>
                             <!-- pc button -->
                             <div class="col-md-6 col-12 d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-                                <button type="button" class="btn-black">สำเนาที่อยู่ด้านบน</button>
+                                <button onclick="copyAddress()" type="button" class="btn-black">สำเนาที่อยู่ด้านบน</button>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="companyName">ชื่อบริษัท*</label>
-                                <input type="text" name="companyName" class="form-or-style"/>
+                                <input type="text" name="companyName2" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="department">แผนก/หน่วยงาน</label>
-                                <input type="text" name="department" class="form-or-style"/>
+                                <input type="text" name="department2" class="form-or-style"/>
                             </div>
                             <div class="col-12">
                                 <label for="companyAddress">ที่อยู่*</label>
-                                <textarea id="companyAddress" name="companyAddress" rows="3" class="form-or-style"></textarea>
+                                <textarea id="companyAddress" name="companyAddress2" rows="3" class="form-or-style" required></textarea>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province" class="form-or-style">
-                                    <option value="">กรุงเทพมหานคร</option>
-                                    <option value="">กาญจนบุรี</option>
-                                    <option value="">กาฬสินธุ์</option>
+                                <select name="province2" class="form-or-style" required>
+                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode" class="form-or-style"/>
+                                <input type="text" name="zipcode2" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
-                                <input type="text" name="tel" class="form-or-style"/>
+                                <input type="text" name="tel2" class="form-or-style"/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="fax">แฟกซ์</label>
-                                <input type="text" name="fax" class="form-or-style"/>
+                                <input type="text" name="fax2" class="form-or-style"/>
                             </div>
                             <div class="col-12">
                                 <label for="taxpayerNo">เลขผู้เสียภาษีอากร*</label>
-                                <input type="text" name="taxpayerNo" class="form-or-style"/>
+                                <input type="text" name="taxpayerNo2" class="form-or-style" required/>
                             </div>
                             <div class="col-12 py-2">
                                 <label for="companyType">ประเภทบริษัท</label>
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-3 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="companyType" id="companyType1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="companyType2" id="companyType1" value="สำนักงานใหญ่" checked>
                                             <label class="form-check-label" for="companyType1">สำนักงานใหญ่</label>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="companyType" id="companyType2" value="">
+                                            <input class="form-check-input" type="radio" name="companyType2" id="companyType2" value="สาขาที่">
                                             <label class="form-check-label" for="companyType2">สาขาที่</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
-                                        <input type="text" name="companyTypeName" class="form-or-style"/>
+                                        <input type="text" name="companyTypeName2" class="form-or-style"/>
                                     </div>
                                 </div>
                             </div>
@@ -187,27 +188,27 @@
                         <div class="row py-2">
                             <div class="col-md-6 col-12">
                                 <label for="companyName">ชื่อบริษัท (ภาษาอังกฤษ)*</label>
-                                <input type="text" name="companyName" class="form-or-style"/>
+                                <input type="text" name="companyName3" class="form-or-style" required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="department">แผนก/หน่วยงาน</label>
-                                <input type="text" name="department" class="form-or-style"/>
+                                <input type="text" name="department3" class="form-or-style"/>
                             </div>
                             <div class="col-12">
                                 <label for="companyAddress">ที่อยู่*</label>
-                                <textarea id="companyAddress" name="companyAddress" rows="3" class="form-or-style"></textarea>
+                                <textarea id="companyAddress" name="companyAddress3" rows="3" class="form-or-style" required></textarea>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province" class="form-or-style">
-                                    <option value="">กรุงเทพมหานคร</option>
-                                    <option value="">กาญจนบุรี</option>
-                                    <option value="">กาฬสินธุ์</option>
+                                <select name="province3" class="form-or-style" required>
+                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode" class="form-or-style"/>
+                                <input type="text" name="zipcode3" class="form-or-style" required/>
                             </div>
                         </div>
                         <!-- end: form ข้อมูลลูกค้า ในใบรับรองสอบเทียบ -->
@@ -230,13 +231,13 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="serviceType" id="serviceType1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="serviceType" id="serviceType1" value="สอบเทียบห้องปฏิบัติการบริษัทฯ" checked>
                                             <label class="form-check-label" for="serviceType1">สอบเทียบห้องปฏิบัติการบริษัทฯ</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="serviceType" id="serviceType2" value="">
+                                            <input class="form-check-input" type="radio" name="serviceType" id="serviceType2" value="สอบเทียบนอกสถานที่">
                                             <label class="form-check-label" for="serviceType2">สอบเทียบนอกสถานที่</label>
                                         </div>
                                     </div>
@@ -283,7 +284,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12">
-                                        <input class="form-or-style" type="date" name="dueDateSelect" required="">
+                                        <input class="form-or-style" type="date" name="dueDateSelect" >
                                     </div>
                                 </div>
                             </div>
@@ -334,7 +335,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-12">
-                                        <input class="form-or-style" type="date" name="nextScheduleSelect" required="">
+                                        <input class="form-or-style" type="date" name="nextScheduleSelect" >
                                     </div>
                                 </div>
                             </div>
@@ -346,13 +347,13 @@
                     <!-- end: form ข้อมูลติดต่อ -->
 
                     <!-- form ข้อมูลเครื่องมือสอบเทียบ -->
-                    <fieldset class="text-center mx-0 w-100">
+                    <fieldset class="text-center mx-0 w-100" id="T2" >
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold text-start">รายการเครื่องมือสอบเทียบ</h6>
                         <!-- Add button -->
-                        <button type="button" name="add" class="btn-add d-block btn-25-50">Add</button>
+                        <button type="button" name="add" id="coppy"  class="btn-add d-block btn-25-50">Add</button>
 
                         <!-- Form เครื่องมือสอบเทียบ (ฟอร์มกรอบขาว) -->
-                        <div class="w-100 bg-white p-3 my-3 text-end border">
+                        <div id="tech" class="w-100 bg-white p-3 my-3 text-end border">
                             <div class="row text-start">
                                 <div class="col-md-1 col-12">
                                     <div class="row">
@@ -366,26 +367,26 @@
                                         <h6 class="fw-bold">ค้นหาจากฐานข้อมูล</h6>
                                         <div class="col-md-4 col-12">
                                             <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ*</label>
-                                            <select name="pipetteType" class="form-or-style">
-                                                <option value="">เครื่องมือสอบเทียบ 1</option>
-                                                <option value="">เครื่องมือสอบเทียบ 2</option>
-                                                <option value="">เครื่องมือสอบเทียบ 3</option>
+                                            <select name="pipetteType[]" class="form-or-style pipetteType" required>
+                                                <option value="เครื่องมือสอบเทียบ 1">เครื่องมือสอบเทียบ 1</option>
+                                                <option value="เครื่องมือสอบเทียบ 2">เครื่องมือสอบเทียบ 2</option>
+                                                <option value="เครื่องมือสอบเทียบ 3">เครื่องมือสอบเทียบ 3</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="manufacture">ยี่ห้อ*</label>
-                                            <select name="manufacture" class="form-or-style">
-                                                <option value="">ยี่ห้อ 1</option>
-                                                <option value="">ยี่ห้อ 2</option>
-                                                <option value="">ยี่ห้อ 3</option>
+                                            <select name="manufacture[]" class="form-or-style manufacture" required>
+                                                <option value="ยี่ห้อ 1">ยี่ห้อ 1</option>
+                                                <option value="ยี่ห้อ 2">ยี่ห้อ 2</option>
+                                                <option value="ยี่ห้อ 3">ยี่ห้อ 3</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="model">รุ่น*</label>
-                                            <select name="model" class="form-or-style">
-                                                <option value="">รุ่น 1</option>
-                                                <option value="">รุ่น 2</option>
-                                                <option value="">รุ่น 3</option>
+                                            <select name="model[]" class="form-or-style model" required>
+                                                <option value="รุ่น 1">รุ่น 1</option>
+                                                <option value="รุ่น 2">รุ่น 2</option>
+                                                <option value="รุ่น 3">รุ่น 3</option>
                                             </select>
                                         </div>
                                     </div>
@@ -394,69 +395,75 @@
                                         <h6 class="mt-4 fw-bold">กรอกข้อมูลใหม่</h6>
                                         <div class="col-md-4 col-12">
                                             <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ*</label>
-                                            <input type="text" name="pipetteType" class="form-or-style"/>
+                                            <input type="text" name="pipetteType1[]" class="form-or-style pipetteType1" required/>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="manufacture">ยี่ห้อ*</label>
-                                            <input type="text" name="manufacture" class="form-or-style"/>
+                                            <input type="text" name="manufacture1[]" class="form-or-style manufacture1" required/>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="model">รุ่น*</label>
-                                            <input type="text" name="model" class="form-or-style"/>
+                                            <input type="text" name="model1[]" class="form-or-style model1" required/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-3 col-12">
                                             <label for="volumn">ขนาด</label>
-                                            <input type="text" name="volumn" class="form-or-style"/>
+                                            <input type="text" name="volumn[]" class="form-or-style volumn"/>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <label for="serialNumber">หมายเลขเครื่อง*</label>
-                                            <input type="text" name="serialNumber" class="form-or-style"/>
+                                            <input type="text" name="serialNumber[]" class="form-or-style serialNumber" required/>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <label for="identifyNumber">รหัสเครื่องมือ</label>
-                                            <input type="text" name="IdentifyNumber" class="form-or-style"/>
+                                            <input type="text" name="IdentifyNumber[]" class="form-or-style IdentifyNumber"/>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <label for="calibration">จุดสอบเทียบ*</label>
-                                            <input type="text" name="calibration" class="form-or-style"/>
+                                            <input type="text" name="calibration[]" class="form-or-style calibration" required/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-3 col-12">
                                             <label for="">เกณฑ์ยอมรับ</label>
-                                            <input type="text" name="" class="form-or-style"/>
+                                            <input type="text" name="gain[]" class="form-or-style gain"/>
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <label for="condition">สภาพเครื่องมือ</label>
-                                            <input class="form-or-style" type="file" id="condition" multiple>
+                                            <input class="form-or-style file" type="file" id="condition" name="file[]" multiple>
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <label for="otherPipette">อุปกรณ์อื่น ๆ</label>
-                                            <input type="text" name="otherPipette" class="form-or-style"/>
+                                            <input type="text" name="otherPipette[]" class="form-or-style otherPipette"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn-icon" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button>
-                            <button class="btn-icon" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></button>
-                        </div>
+                            <!-- <button type="button" id="copyButton" class="btn-icon" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button> -->
+                          <!--   <button type="button" id="deleteButton" class="btn-icon" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></button> -->
+                        </div >
                         <!-- end: Form เครื่องมือสอบเทียบ (ฟอร์มกรอบขาว) -->
 
-                        <!-- Google Recaptcha v2 -->
-                        <div class="d-flex justify-content-center mt-4 mb-3">
-                            <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+                        <div id="ddd" class=" mt-4 mb-3">
                         </div>
+
+                        <!-- Google Recaptcha v2 -->
+
+                        <div  class="d-flex justify-content-center mt-4 mb-3">
+                            <div id="html_element" class="g-recaptcha" data-sitekey="6LcWelAoAAAAAFXOJHaRi8JIYG2PE5STp0El7bvN"></div>
+                        </div>
+
+
                         <!-- end: Google Recaptcha v2 -->
 
                         <!-- Consent form -->
                         <div class="row text-start d-flex justify-content-center">
                             <div id="consent-checkbox">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="consentaccept">
+                                    <input class="form-check-input" type="checkbox" value="" id="consentaccept" >
                                     <label class="form-check-label" for="consentaccept">
                                         ข้าพเจ้ายินยอมให้ผู้ให้บริการเก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคล ของข้าพเจ้า เพื่อวัตถุประสงค์ในการให้บริการตาม <strong><a href="http://" class="text-green" data-bs-toggle="modal" data-bs-target="#exampleModal">นโยบายคุ้มครองข้อมูลส่วนบุคคลของบริษัทฯ</a></strong> การวิเคราะห์ข้อมูล เพื่อวางแผนทางการตลาด รวมถึงวัตถุประสงค์อื่น ๆ ตามที่ผู้ให้บริการเห็นสมควร
                                     </label>
@@ -484,16 +491,16 @@
                         <!-- end: Consent form -->
  
                         <button type="button" name="previous" class="previous action-button-previous my-4 mb-5 mx-2 btn-25-50">ย้อนกลับ</button>
-                        <button type="button" name="next" class="next action-button my-4 mb-5 mx-2 btn-25-50">ส่งข้อมูล</button>
+                        <button type="button" name="next" class="next-2 action-button my-4 mb-5 mx-2 btn-25-50">ส่งข้อมูล</button>
                     
-                    </fieldset>
+                    </fieldset  >
                     <!-- end: form ข้อมูลเครื่องมือสอบเทียบ -->
 
                     <!-- form ส่งข้อมูล -->
-                    <fieldset>
+                    <fieldset id="T3">
                         <img class="p-5 img-fluid mx-auto d-block mt-3" src="images/sent-form.png" alt="" id="img-sent-form">
                         <h3 class="text-center">ส่งฟอร์มขอใช้บริการสอบเทียบเรียบร้อย</h3>
-                        <a href="index.php"><button type="button" class="btn-black my-4 mb-5 d-block mx-auto btn-25-50">กลับสู่หนัาหลัก</button></a>
+                        <a href="{{url('index')}}"><button type="button" class="btn-black my-4 mb-5 d-block mx-auto btn-25-50">กลับสู่หนัาหลัก</button></a>
                     </fieldset>
                     <!-- end: form ส่งข้อมูล -->
 
@@ -503,12 +510,54 @@
         <!-- end: MultiStep Form -->
             
     </div>
-    
 
 
-<?php require('inc_footer.php'); ?>
+@include('layouts.inc_footer')
 </body>
 </html>
+
+<script>
+    // Get references to the button and the container div
+    var addButton = document.getElementById('coppy');
+    var container = document.querySelector('#tech');
+    var cloneContainer = document.querySelector('#ddd');
+    var counter = 1;
+
+    // Add a click event listener to the button
+    addButton.addEventListener('click', function() {
+        // Clone the container div
+        var newDiv = container.cloneNode(true);
+
+        // Clear the input fields in the cloned div
+        var inputFields = newDiv.querySelectorAll('input');
+        inputFields.forEach(function(input) {
+            input.value = '';
+        });
+
+        counter++;
+        var numberElement = newDiv.querySelector('p');
+        numberElement.textContent = counter;
+
+        // Create a delete button and add the specified icon
+        var deleteButton = document.createElement('button');
+        deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+        deleteButton.classList.add('btn-icon', 'delete-button');
+        deleteButton.title = 'ลบ';
+        deleteButton.setAttribute('data-bs-toggle', 'tooltip');
+        deleteButton.setAttribute('data-bs-placement', 'top');
+
+        // Add an event listener to the delete button to remove the corresponding div
+        deleteButton.addEventListener('click', function() {
+            cloneContainer.removeChild(newDiv);
+        });
+
+        // Append the delete button to the cloned div
+        newDiv.appendChild(deleteButton);
+
+        // Append the cloned div to the container
+        cloneContainer.appendChild(newDiv);
+    });
+</script>
 
 <script>
 
@@ -524,6 +573,30 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+// check-validate-----
+
+// var fieldsetT1 = document.getElementById('T1');
+// var requiredElements = fieldsetT1.querySelectorAll('select[required], input[required], textarea[required]');
+
+// var isValid = true;
+
+// for (var i = 0; i < requiredElements.length; i++) {
+//     var element = requiredElements[i];
+//     if (element.value.trim() === '') {
+//         alert('Please complete the required field.');
+//         isValid = false;
+//         break; // Exit the loop early if a field is not valid
+//     }
+// }
+
+// if (!isValid) {
+//     return false; // Prevent further action if any field is not valid
+// }
+
+// check-validate-----
+
+alert(1);
+
 	if(animating) return false;
 	animating = true;
 	
@@ -561,6 +634,91 @@ $(".next").click(function(){
 	});
 });
 
+$(".next-2").click(function(){
+
+// check-validate-----
+
+var fieldsetT2 = document.getElementById('T2');
+var requiredElements = fieldsetT2.querySelectorAll('select[required], input[required], textarea[required]');
+
+var isValid = true;
+
+for (var i = 0; i < requiredElements.length; i++) {
+    var element = requiredElements[i];
+    if (element.value.trim() === '') {
+        alert('Please complete the required field.');
+        isValid = false;
+        break; // Exit the loop early if a field is not valid
+    }
+}
+
+if (!isValid) {
+    return false; // Prevent further action if any field is not valid
+}
+   
+
+var recaptchaResponse = $("#html_element textarea[name='g-recaptcha-response']");
+// Check if the reCAPTCHA response is empty
+if (recaptchaResponse.val() === '') {
+    alert('PLease Check reCAPTCHA.');
+    return false;
+}
+
+var consentCheckbox = $("#consentaccept");
+// Check if the checkbox is not checked
+if (!consentCheckbox.is(":checked")) {
+    alert('You must accept the consent checkbox.');
+    return false;
+}
+
+
+// check-validate-----
+
+alert(2);
+
+// save---data---
+
+// save---data---
+
+	if(animating) return false;
+	animating = true;
+	
+	current_fs = $(this).parent();
+	next_fs = $(this).parent().next();
+	
+	//activate next step on progressbar using the index of next_fs
+	$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+	
+	//show the next fieldset
+	next_fs.show(); 
+	//hide the current fieldset with style
+	current_fs.animate({opacity: 0}, {
+		step: function(now, mx) {
+			//as the opacity of current_fs reduces to 0 - stored in "now"
+			//1. scale current_fs down to 80%
+			scale = 1 - (1 - now) * 0.2;
+			//2. bring next_fs from the right(50%)
+			left = (now * 50)+"%";
+			//3. increase opacity of next_fs to 1 as it moves in
+			opacity = 1 - now;
+			current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+			next_fs.css({'left': left, 'opacity': opacity});
+		}, 
+		duration: 800, 
+		complete: function(){
+			current_fs.hide();
+			animating = false;
+		}, 
+		//this comes from the custom easing plugin
+		easing: 'easeInOutBack'
+	});
+});
+
+
+
 $(".previous").click(function(){
 	if(animating) return false;
 	animating = true;
@@ -596,7 +754,124 @@ $(".previous").click(function(){
 	});
 });
 
-$(".submit").click(function(){
-	return false;
-})
+// $(".submit").click(function(){
+// 	return false;
+// })
 </script>
+
+<script type="text/javascript">
+      var onloadCallback = function() {
+        grecaptcha.render('html_element', {
+          'sitekey' : '6LcWelAoAAAAAFXOJHaRi8JIYG2PE5STp0El7bvN'
+        });
+      };
+    </script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+
+
+<script>
+function copyAddress() {
+  // ดึงค่าที่กรอกใน input ใน div a1
+  var inputFromA1 = document.querySelector('#a1 input[name="companyName1"]').value;
+  var inputFromA2 = document.querySelector('#a1 input[name="department1"]').value;
+  var inputFromA3 = document.querySelector('#a1 textarea[name="companyAddress1"]').value;
+  var inputFromA4 = document.querySelector('#a1 select[name="province1"]').value;
+  var inputFromA5 = document.querySelector('#a1 input[name="zipcode1"]').value;
+  var inputFromA6 = document.querySelector('#a1 input[name="tel1"]').value;
+  var inputFromA7 = document.querySelector('#a1 input[name="fax1"]').value;
+  var inputFromA8 = document.querySelector('#a1 input[name="taxpayerNo1"]').value;
+  var inputFromA9 = document.querySelector('#a1 input[name="companyTypeInfo1"]:checked').value;
+  var inputFromA10 = document.querySelector('#a1 input[name="companyTypeName1"]').value;
+
+  // นำค่าที่ดึงมาแสดงใน input ใน div a2
+  document.querySelector('#a2 input[name="companyName2"]').value = inputFromA1;
+  document.querySelector('#a2 input[name="department2"]').value = inputFromA2;
+  document.querySelector('#a2 textarea[name="companyAddress2"]').value = inputFromA3;
+  document.querySelector('#a2 select[name="province2"]').value = inputFromA4;
+  document.querySelector('#a2 input[name="zipcode2"]').value = inputFromA5;
+  document.querySelector('#a2 input[name="tel2"]').value = inputFromA6;
+  document.querySelector('#a2 input[name="fax2"]').value = inputFromA7;
+  document.querySelector('#a2 input[name="taxpayerNo2"]').value = inputFromA8;
+  
+  // Set the radio button in div a2 based on the value from div a1
+  var radioButtonsA2 = document.querySelectorAll('#a2 input[name="companyType2"]');
+  for (var i = 0; i < radioButtonsA2.length; i++) {
+    if (radioButtonsA2[i].value === inputFromA9) {
+      radioButtonsA2[i].checked = true;
+    } else {
+      radioButtonsA2[i].checked = false;
+    }
+  }
+  
+  document.querySelector('#a2 input[name="companyTypeName2"]').value = inputFromA10;
+}
+</script>
+
+
+<!-- <script>
+    $(".next").click(function(){
+    // ...
+
+    // Assuming you have an input field with the ID 'companyName'
+    var companyName = $("#msform input[name='companyName']").val();
+
+    // You can add more variables for other form fields here
+
+    // Create a data object to send via AJAX
+    var formData = {
+        companyName: companyName,
+        // Add other form field data here
+    };
+
+    // Make an AJAX POST request to submit the form data
+    $.ajax({
+        url: '{{url('form-request-service')}}', // Set the URL to your form submission endpoint
+        type: 'POST', // Use POST method
+        data: formData, // Send the form data
+        success: function(response) {
+            // Handle the success response here
+            alert('Form submitted successfully');
+        },
+        error: function(xhr, status, error) {
+            // Handle errors here
+            alert('Error: ' + error);
+        }
+    });
+
+    // ...
+});
+</script> -->
+
+<!-- 
+<script>
+    $(".next").click(function(){
+    // ดึงข้อมูลรูปภาพจาก input file
+    var imageFile = $('#imageFile')[0].files[0];
+    
+    // สร้าง FormData เพื่อส่งไฟล์
+    var formData = new FormData();
+    formData.append('imageFile', imageFile);
+
+    // ทำ AJAX POST request เพื่อส่งไฟล์
+    $.ajax({
+        url: '{{url('form-request-service')}}', // เปลี่ยน URL ตามที่คุณต้องการ
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            // ดำเนินการหลังจากสำเร็จ
+            alert('File uploaded successfully');
+        },
+        error: function(xhr, status, error) {
+            // จัดการข้อผิดพลาด
+            alert('Error: ' + error);
+        }
+    });
+});
+</script> -->
+
+</html>
