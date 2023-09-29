@@ -31,8 +31,10 @@
                             <div class="col-md-6 col-12">
                                 <input type="text" name="companyNo" class="form-or-style"/>
                             </div>
-                             <div class="col-md-3 col-12">
-                                <button onclick="search1()" type="button" class="btn-black w-100">ยืนยัน</button>
+                             <div class="col-md-6 col-12">
+                                <div class="d-grid d-md-inline">
+                                    <button type="button" onclick="search1()" class="btn-black mb-4 mb-md-0"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
+                                </div>
                             </div>
                             <div class="col-md-12 col-12">
                             </div>
@@ -114,21 +116,20 @@
                         <!-- form ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี (ใบเสนอราคา, ใบแจ้งหนี้/ใบกำกับภาษี/ใบเสร็จ)</h6>
                         <div id="a2" class="row py-2">
-                            <!-- mobile button -->
-                            <div class="col-md-6 col-12 d-block d-md-none mb-3">
-                                <button onclick="copyAddress()" type="button" class="btn-black w-100">สำเนาที่อยู่ด้านบน</button>
-                            </div>
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
                                 <input type="text" name="companyNo" class="form-or-style"/>
                             </div>
-                             <div class="col-md-3 col-12">
-                                 <button onclick="search2()" type="button" class="btn-black w-100">ยืนยัน</button>
+                            <div class="col-md-2 col-12">
+                                <div class="d-grid d-md-inline">
+                                    <button type="button" onclick="search2()" class="btn-black mb-4 mb-md-0"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
+                                </div>
                             </div>
-                            <!-- pc button -->
-                            <div class="col-md-3 col-12 d-none d-md-block d-lg-block d-xl-block d-xxl-block">
-                                <button onclick="copyAddress()" type="button" class="btn-black">สำเนาที่อยู่ด้านบน</button>
+                           <div class="col-md-4 col-12 order-md-0 order-first">
+                                <div class="d-grid d-md-inline">
+                                    <button type="button" onclick="copyAddress()" class="btn-black mb-4 mb-md-0">สำเนาที่อยู่ด้านบน</button>
+                                </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="companyName">ชื่อบริษัท*</label>
