@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>@include('layouts.inc_header')
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
 <body>
 @include('layouts.inc_topmenu')
@@ -26,10 +30,17 @@
                         <!-- form ข้อมูลลูกค้า -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า (บริษัทเจ้าของเครื่องมือ)</h6>
                         <div id="a1" class="row py-2">
+                            <?php  $search=DB::table('test_customer')->get(); ?>
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
-                                <input type="text" name="companyNo" class="form-or-style"/>
+                                <!-- <input type="text" name="companyNo1" class="form-or-style js-example-basic-single"/> -->
+                                <select class="form-or-style js-example-basic-single" name="companyNo1">
+                                <option value="">ค้นหา</option>
+                                @foreach($search as $item)
+                                <option value="{{$item->id}}">{{$item->title_th}}</option>
+                                @endforeach
+                                </select>
                             </div>
                              <div class="col-md-6 col-12">
                                 <div class="d-grid d-md-inline">
@@ -127,7 +138,14 @@
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
-                                <input type="text" name="companyNo" class="form-or-style"/>
+                                <!-- <input type="text" name="companyNo2" class="form-or-style js-example-basic-single" /> -->
+
+                                <select class="form-or-style js-example-basic-single" name="companyNo2">
+                                <option value="">ค้นหา</option>
+                                @foreach($search as $item)
+                                <option value="{{$item->id}}">{{$item->title_th}}</option>
+                                @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="d-grid d-md-inline">
@@ -423,11 +441,11 @@
                                             <input type="text" name="volumn[]" class="form-or-style volumn"/>
                                         </div>
                                         <div class="col-md-3 col-12">
-                                            <label for="serialNumber">หมายเลขเครื่อง*</label>
-                                            <input type="text" name="serialNumber[]" class="form-or-style serialNumber" required/>
+                                            <label for="serialNumber">หมายเลขเครื่อง(*กรอกอันใดอันหนึ่ง)</label>
+                                            <input type="text" name="serialNumber[]" class="form-or-style serialNumber" />
                                         </div>
                                         <div class="col-md-3 col-12">
-                                            <label for="identifyNumber">รหัสเครื่องมือ</label>
+                                            <label for="identifyNumber">รหัสเครื่องมือ(*กรอกอันใดอันหนึ่ง)</label>
                                             <input type="text" name="IdentifyNumber[]" class="form-or-style IdentifyNumber"/>
                                         </div>
                                         <div class="col-md-3 col-12">
@@ -452,7 +470,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <button type="button" id="copyButton" class="btn-icon" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button> -->
+                            <button type="button" id="copyButton" class="btn-icon copyButton" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button>
                           <!--   <button type="button" id="deleteButton" class="btn-icon" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></button> -->
                         </div >
                         <!-- end: Form เครื่องมือสอบเทียบ (ฟอร์มกรอบขาว) -->
@@ -527,6 +545,62 @@
 </html>
 
 <script>
+var addButton = document.querySelector('.copyButton');
+var container = document.querySelector('#tech');
+var cloneContainer = document.querySelector('#ddd');
+var counter = 1;
+
+// Add a click event listener to the button
+addButton.addEventListener('click', function() {
+    // Clone the container div
+    var newDiv = container.cloneNode(true);
+
+    // Clear the input fields in the cloned div
+    var inputFields = newDiv.querySelectorAll('input, select');
+    var oldInputFields = container.querySelectorAll('input, select');
+    
+    inputFields.forEach(function(input, index) {
+        if (input.type !== 'file') {
+            input.value = oldInputFields[index].value;
+        } else {
+            // For file inputs, create a new input element to replace the old one
+            var newFileInput = document.createElement('input');
+            newFileInput.type = 'file';
+            newFileInput.name = oldInputFields[index].name;
+            newFileInput.id = oldInputFields[index].id;
+            newFileInput.className = oldInputFields[index].className;
+            
+            input.parentNode.replaceChild(newFileInput, input);
+        }
+    });
+
+    counter++;
+    var numberElement = newDiv.querySelector('p');
+    numberElement.textContent = counter;
+
+    // Create a delete button and add the specified icon
+    var deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+    deleteButton.classList.add('btn-icon', 'delete-button');
+    deleteButton.title = 'ลบ';
+    deleteButton.setAttribute('data-bs-toggle', 'tooltip');
+    deleteButton.setAttribute('data-bs-placement', 'top');
+
+    // Add an event listener to the delete button to remove the corresponding div
+    deleteButton.addEventListener('click', function() {
+        cloneContainer.removeChild(newDiv);
+    });
+
+    // Append the delete button to the cloned div
+    newDiv.appendChild(deleteButton);
+
+    // Append the cloned div to the container
+    cloneContainer.appendChild(newDiv);
+});
+</script>
+
+
+<script>
     // Get references to the button and the container div
     var addButton = document.getElementById('coppy');
     var container = document.querySelector('#tech');
@@ -538,10 +612,11 @@
         // Clone the container div
         var newDiv = container.cloneNode(true);
 
-        // Clear the input fields in the cloned div
-        var inputFields = newDiv.querySelectorAll('input');
+       // Clear the input fields in the cloned div
+       var inputFields = newDiv.querySelectorAll('input, file, select');
+        
         inputFields.forEach(function(input) {
-            input.value = '';
+            input.value = ''; // Clear the input field value
         });
 
         counter++;
@@ -568,6 +643,8 @@
         cloneContainer.appendChild(newDiv);
     });
 </script>
+
+
 
 <script>
 
@@ -666,6 +743,12 @@ if (!isValid) {
     return false; // Prevent further action if any field is not valid
 }
    
+var serialNumber = $("input[name='serialNumber[]']");
+var IdentifyNumber = $("input[name='IdentifyNumber[]']");
+if (serialNumber.val() === '' && IdentifyNumber.val() === '') {
+    alert('PLease Check serialNumber or IdentifyNumber.');
+    return false;
+}
 
 var recaptchaResponse = $("#html_element textarea[name='g-recaptcha-response']");
 // Check if the reCAPTCHA response is empty
@@ -783,6 +866,78 @@ $(".previous").click(function(){
 
 
 <script>
+function search1() {
+    var id = document.querySelector('#a1 select[name="companyNo1"]').value;
+    // document.querySelector('#a1 input[name="companyName1"]').value = id;
+
+    $.ajax({
+                url: "{!!url('/search_form_customer')!!}",
+                method: "POST",
+                type: "PUT",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                },
+                success: function(item) {
+                    if(item.status=='success'){
+                        document.querySelector('#a1 input[name="companyName1"]').value = item.title;
+                        document.querySelector('#a1 select[name="province1"]').value = item.province;
+
+                        var radioButtonsA1 = document.querySelectorAll('#a1 input[name="companyTypeInfo1"]');
+                        for (var i = 0; i < radioButtonsA1.length; i++) {
+                        if (radioButtonsA1[i].value === item.bb) {
+                        radioButtonsA1[i].checked = true;
+                        } else {
+                        radioButtonsA1[i].checked = false;
+                        }
+                         }
+
+
+                    }else{
+                       
+                    }
+                },
+            });
+}
+</script>
+
+<script>
+function search2() {
+    var id = document.querySelector('#a2 select[name="companyNo2"]').value;
+    // document.querySelector('#a2 input[name="companyName2"]').value = id;
+
+    $.ajax({
+                url: "{!!url('/search_form_customer')!!}",
+                method: "POST",
+                type: "PUT",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                },
+                success: function(item) {
+                    if(item.status=='success'){
+                        document.querySelector('#a2 input[name="companyName2"]').value = item.title;
+                        document.querySelector('#a2 select[name="province2"]').value = item.province;
+
+                        var radioButtonsA2 = document.querySelectorAll('#a2 input[name="companyType2"]');
+                        for (var i = 0; i < radioButtonsA2.length; i++) {
+                        if (radioButtonsA2[i].value === item.bb) {
+                        radioButtonsA2[i].checked = true;
+                        } else {
+                        radioButtonsA2[i].checked = false;
+                        }
+                         }
+
+
+                    }else{
+                       
+                    }
+                },
+            });
+}
+</script>
+
+<script>
 function copyAddress() {
   // ดึงค่าที่กรอกใน input ใน div a1
   var inputFromA1 = document.querySelector('#a1 input[name="companyName1"]').value;
@@ -883,5 +1038,12 @@ function copyAddress() {
     });
 });
 </script> -->
+
+<script>
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 
 </html>
