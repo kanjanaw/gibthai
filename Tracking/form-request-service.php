@@ -116,19 +116,22 @@
                         <!-- form ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า สำหรับออกเอกสารทางบัญชี (ใบเสนอราคา, ใบแจ้งหนี้/ใบกำกับภาษี/ใบเสร็จ)</h6>
                         <div id="a2" class="row py-2">
+                            <div class="col-md-6 col-12 order-md-0 order-first">
+                                <div class="d-grid d-md-inline">
+                                    <button type="button" onclick="copyAddress()" class="btn-black mb-4 mb-md-0">สำเนาที่อยู่ด้านบน</button>
+                                </div>
+                            </div>
+                             <div class="col-md-12 col-12">
+                                 <br>
+                            </div>
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
                                 <input type="text" name="companyNo" class="form-or-style"/>
                             </div>
-                            <div class="col-md-2 col-12">
+                            <div class="col-md-6 col-12">
                                 <div class="d-grid d-md-inline">
                                     <button type="button" onclick="search2()" class="btn-black mb-4 mb-md-0"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
-                                </div>
-                            </div>
-                           <div class="col-md-4 col-12 order-md-0 order-first">
-                                <div class="d-grid d-md-inline">
-                                    <button type="button" onclick="copyAddress()" class="btn-black mb-4 mb-md-0">สำเนาที่อยู่ด้านบน</button>
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
