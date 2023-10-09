@@ -9,6 +9,13 @@
 <body>
 @include('layouts.inc_topmenu')
 
+<?php 
+ $province = App\Models\dataset_provinces::select('name_th', 'id', 'name_en')
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->get();
+
+ ?>
+  <?php  $search=App\Models\form_data::orderByRaw("CONVERT(1name_company USING tis620) ASC")->get(); ?>
 
     <div class="container">
     <h4 class="font-weight-700 pt-5 text-center">แจ้งขอรับบริการสอบเทียบเครื่องมือ</h4>
@@ -16,8 +23,7 @@
         <!-- MultiStep Form -->
         <div class="row">
             <div class="col-12">
-                <form id="msform" action="{{url('form-request-service')}}">
-                    @csrf
+                <form id="msform" >
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active">ข้อมูลลูกค้า</li>
@@ -30,7 +36,6 @@
                         <!-- form ข้อมูลลูกค้า -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า (บริษัทเจ้าของเครื่องมือ)</h6>
                         <div id="a1" class="row py-2">
-                            <?php  $search=DB::table('test_customer')->get(); ?>
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
                             <div class="col-md-6 col-12">
@@ -38,7 +43,7 @@
                                 <select class="form-or-style js-example-basic-single" name="companyNo1">
                                 <option value="">ค้นหา</option>
                                 @foreach($search as $item)
-                                <option value="{{$item->id}}">{{$item->title_th}}</option>
+                                <option value="{{$item['1name_company']}}">{{$item['1name_company']}}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -64,9 +69,12 @@
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
                                 <select name="province1" class="form-or-style" required>
-                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                    @foreach($province as $ps)
+                                    <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
+                                    @endforeach
+                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                     <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
@@ -143,7 +151,7 @@
                                 <select class="form-or-style js-example-basic-single" name="companyNo2">
                                 <option value="">ค้นหา</option>
                                 @foreach($search as $item)
-                                <option value="{{$item->id}}">{{$item->title_th}}</option>
+                                <option value="{{$item['1name_company']}}">{{$item['1name_company']}}</option>
                                 @endforeach
                                 </select>
                             </div>
@@ -167,9 +175,12 @@
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
                                 <select name="province2" class="form-or-style" required>
-                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                @foreach($province as $ps)
+                                    <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
+                                    @endforeach
+                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                     <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
@@ -212,6 +223,7 @@
                         <!-- end: form ข้อมูลลูกค้าสำหรับออกเอกสารทางบัญชี -->
 
                         <!-- form ข้อมูลลูกค้า ในใบรับรองสอบเทียบ -->
+                    <div id="a3">
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า ระบุในใบรับรองผลการสอบเทียบ (กรอกเป็นภาษาอังกฤษเท่านั้น)</h6>
                         <div class="row py-2">
                             <div class="col-md-6 col-12">
@@ -229,9 +241,12 @@
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
                                 <select name="province3" class="form-or-style" required>
-                                    <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+                                @foreach($province as $ps)
+                                    <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
+                                    @endforeach
+                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
                                     <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option>
+                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
@@ -277,13 +292,13 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="calibrationType" id="calibration1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="calibrationType" id="calibration1" value="ตามมาตรฐานห้องปฏิบัติการ" checked>
                                             <label class="form-check-label" for="calibration1">ตามมาตรฐานห้องปฏิบัติการ</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="calibrationType" id="calibration2" value="">
+                                            <input class="form-check-input" type="radio" name="calibrationType" id="calibration2" value="ตามความต้องการของลูกค้า">
                                             <label class="form-check-label" for="calibration2">ตามความต้องการของลูกค้า</label>
                                         </div>
                                     </div>
@@ -295,19 +310,19 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate1" value="7 วัน" checked>
                                             <label class="form-check-label" for="dueDate1">7 วัน</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate2" value="">
+                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate2" value="14 วัน">
                                             <label class="form-check-label" for="dueDate2">14 วัน</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate3" value="">
+                                            <input class="form-check-input" type="radio" name="dueDate" id="dueDate3" value="อื่น ๆ ระบุ">
                                             <label class="form-check-label" for="dueDate3">อื่น ๆ ระบุ</label>
                                         </div>
                                     </div>
@@ -322,13 +337,13 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="report" id="report1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="report" id="report1" value="รายงานผลแบบไม่ปรับ" checked>
                                             <label class="form-check-label" for="report1">รายงานผลแบบไม่ปรับ</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="report" id="report2" value="">
+                                            <input class="form-check-input" type="radio" name="report" id="report2" value="รายงานผลแบบปรับ">
                                             <label class="form-check-label" for="report2">รายงานผลแบบปรับ</label>
                                         </div>
                                     </div>
@@ -340,25 +355,25 @@
                                 <div class="row g-3 align-items-center">
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule1" value="" checked>
+                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule1" value="3 เดือน" checked>
                                             <label class="form-check-label" for="nextSchedule1">3 เดือน</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule2" value="">
+                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule2" value="6 เดือน">
                                             <label class="form-check-label" for="nextSchedule2">6 เดือน</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule3" value="">
+                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule3" value="1 ปี">
                                             <label class="form-check-label" for="nextSchedule3">1 ปี</label>
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule4" value="">
+                                            <input class="form-check-input" type="radio" name="nextSchedule" id="nextSchedule4" value="อื่น ๆ ระบุ">
                                             <label class="form-check-label" for="nextSchedule4">อื่น ๆ ระบุ</label>
                                         </div>
                                     </div>
@@ -368,6 +383,8 @@
                                 </div>
                             </div>
                         </div>
+
+                    </div>
                         <!-- end: form ข้อมูลลูกค้า ข้อมูลสอบเทียบ -->
                         
                         <button type="button" name="next" class="next action-button my-4 mb-5 mx-auto d-block btn-25-50">ต่อไป</button>
@@ -379,14 +396,15 @@
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold text-start">รายการเครื่องมือสอบเทียบ</h6>
                         <!-- Add button -->
                         <button type="button" name="add" id="coppy"  class="btn-add d-block btn-25-50">Add</button>
-
                         <!-- Form เครื่องมือสอบเทียบ (ฟอร์มกรอบขาว) -->
-                        <div id="tech" class="w-100 bg-white p-3 my-3 text-end border">
-                            <div class="row text-start">
+
+                        <div id="a4">
+                        <div id="container" class="w-100 bg-white p-3 my-3 text-end border tech">
+                            <div class="row rowcopy text-start">
                                 <div class="col-md-1 col-12">
                                     <div class="row">
                                         <label for="no" class="col-md-12 col-auto">No.</label>
-                                        <p class="col-md-12 col-auto">1</p>
+                                        <p class="col-md-12 col-auto number">1</p>
                                     </div> 
                                 </div>
 
@@ -394,24 +412,27 @@
                                     <div class="row">
                                         <h6 class="fw-bold">ค้นหาจากฐานข้อมูล</h6>
                                         <div class="col-md-4 col-12">
-                                            <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ*</label>
-                                            <select name="pipetteType[]" class="form-or-style pipetteType" required>
+                                            <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ</label>
+                                            <select name="pipetteType" class="form-or-style pipetteType js-example-basic-single">
+                                            <option value="">เลือก</option>
                                                 <option value="เครื่องมือสอบเทียบ 1">เครื่องมือสอบเทียบ 1</option>
                                                 <option value="เครื่องมือสอบเทียบ 2">เครื่องมือสอบเทียบ 2</option>
                                                 <option value="เครื่องมือสอบเทียบ 3">เครื่องมือสอบเทียบ 3</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <label for="manufacture">ยี่ห้อ*</label>
-                                            <select name="manufacture[]" class="form-or-style manufacture" required>
+                                            <label for="manufacture">ยี่ห้อ</label>
+                                            <select name="manufacture" class="form-or-style manufacture js-example-basic-single">
+                                            <option value="">เลือก</option>
                                                 <option value="ยี่ห้อ 1">ยี่ห้อ 1</option>
                                                 <option value="ยี่ห้อ 2">ยี่ห้อ 2</option>
                                                 <option value="ยี่ห้อ 3">ยี่ห้อ 3</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-12">
-                                            <label for="model">รุ่น*</label>
-                                            <select name="model[]" class="form-or-style model" required>
+                                            <label for="model">รุ่น</label>
+                                            <select name="model" class="form-or-style model js-example-basic-single">
+                                            <option value="">เลือก</option>
                                                 <option value="รุ่น 1">รุ่น 1</option>
                                                 <option value="รุ่น 2">รุ่น 2</option>
                                                 <option value="รุ่น 3">รุ่น 3</option>
@@ -423,15 +444,15 @@
                                         <h6 class="mt-4 fw-bold">กรอกข้อมูลใหม่</h6>
                                         <div class="col-md-4 col-12">
                                             <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ*</label>
-                                            <input type="text" name="pipetteType1[]" class="form-or-style pipetteType1" required/>
+                                            <input type="text" name="pipetteType1[]" class="form-or-style pipetteType1" readonly required/>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="manufacture">ยี่ห้อ*</label>
-                                            <input type="text" name="manufacture1[]" class="form-or-style manufacture1" required/>
+                                            <input type="text" name="manufacture1[]" class="form-or-style manufacture1"  required/>
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="model">รุ่น*</label>
-                                            <input type="text" name="model1[]" class="form-or-style model1" required/>
+                                            <input type="text" name="model1[]" class="form-or-style model1"  required/>
                                         </div>
                                     </div>
 
@@ -461,7 +482,7 @@
                                         </div>
                                         <div class="col-md-3 col-12">
                                             <label for="condition">สภาพเครื่องมือ</label>
-                                            <input class="form-or-style file" type="file" id="condition" name="file[]" multiple>
+                                            <input class="form-or-style file" type="file" id="condition" name="file[]" >
                                         </div>
                                         <div class="col-md-6 col-12">
                                             <label for="otherPipette">อุปกรณ์อื่น ๆ</label>
@@ -470,12 +491,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="copyButton" class="btn-icon copyButton" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button>
-                          <!--   <button type="button" id="deleteButton" class="btn-icon" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></button> -->
+                            <button type="button" id=""  class="btn-icon copyButton" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></button>
+                            <button type="button" id="deleteButton" class="btn-icon deleteButton" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></button>
+
+                            
                         </div >
+                        </div>
+
+                        <div id="show_tech" class="text-end show_tech">
+                        </div >
+
                         <!-- end: Form เครื่องมือสอบเทียบ (ฟอร์มกรอบขาว) -->
 
-                        <div id="ddd" class=" mt-4 mb-3">
+                        <div id="" class=" mt-4 mb-3 ddd">
                         </div>
 
                         <!-- Google Recaptcha v2 -->
@@ -544,105 +572,70 @@
 </body>
 </html>
 
+<!--ส่วนจัดการเครื่องมือช่าง--------->
 <script>
-var addButton = document.querySelector('.copyButton');
-var container = document.querySelector('#tech');
-var cloneContainer = document.querySelector('#ddd');
-var counter = 1;
+    $(document).ready(function () {
+        let divCount = 1;
 
-// Add a click event listener to the button
-addButton.addEventListener('click', function() {
-    // Clone the container div
-    var newDiv = container.cloneNode(true);
-
-    // Clear the input fields in the cloned div
-    var inputFields = newDiv.querySelectorAll('input, select');
-    var oldInputFields = container.querySelectorAll('input, select');
-    
-    inputFields.forEach(function(input, index) {
-        if (input.type !== 'file') {
-            input.value = oldInputFields[index].value;
-        } else {
-            // For file inputs, create a new input element to replace the old one
-            var newFileInput = document.createElement('input');
-            newFileInput.type = 'file';
-            newFileInput.name = oldInputFields[index].name;
-            newFileInput.id = oldInputFields[index].id;
-            newFileInput.className = oldInputFields[index].className;
-            
-            input.parentNode.replaceChild(newFileInput, input);
-        }
-    });
-
-    counter++;
-    var numberElement = newDiv.querySelector('p');
-    numberElement.textContent = counter;
-
-    // Create a delete button and add the specified icon
-    var deleteButton = document.createElement('button');
-    deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-    deleteButton.classList.add('btn-icon', 'delete-button');
-    deleteButton.title = 'ลบ';
-    deleteButton.setAttribute('data-bs-toggle', 'tooltip');
-    deleteButton.setAttribute('data-bs-placement', 'top');
-
-    // Add an event listener to the delete button to remove the corresponding div
-    deleteButton.addEventListener('click', function() {
-        cloneContainer.removeChild(newDiv);
-    });
-
-    // Append the delete button to the cloned div
-    newDiv.appendChild(deleteButton);
-
-    // Append the cloned div to the container
-    cloneContainer.appendChild(newDiv);
-});
-</script>
-
-
-<script>
-    // Get references to the button and the container div
-    var addButton = document.getElementById('coppy');
-    var container = document.querySelector('#tech');
-    var cloneContainer = document.querySelector('#ddd');
-    var counter = 1;
-
-    // Add a click event listener to the button
-    addButton.addEventListener('click', function() {
-        // Clone the container div
-        var newDiv = container.cloneNode(true);
-
-       // Clear the input fields in the cloned div
-       var inputFields = newDiv.querySelectorAll('input, file, select');
-        
-        inputFields.forEach(function(input) {
-            input.value = ''; // Clear the input field value
+        // Add a new tech div when the "Add" button is clicked
+        $(document).on('click', '#coppy', function () {
+            const newDiv = $('.tech:first').clone();
+            newDiv.find('.number').text(++divCount);
+            newDiv.find('input, select').val('');
+            // $('#container').append(newDiv);
+            $('#show_tech').append(newDiv);
         });
 
-        counter++;
-        var numberElement = newDiv.querySelector('p');
-        numberElement.textContent = counter;
+        // Handle copying a tech div
+        $(document).on('click', '.copyButton', function () {
+            const parentDiv = $(this).closest('.tech');
+            const newDiv = parentDiv.clone();
 
-        // Create a delete button and add the specified icon
-        var deleteButton = document.createElement('button');
-        deleteButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-        deleteButton.classList.add('btn-icon', 'delete-button');
-        deleteButton.title = 'ลบ';
-        deleteButton.setAttribute('data-bs-toggle', 'tooltip');
-        deleteButton.setAttribute('data-bs-placement', 'top');
+            newDiv.find('input[type="file"]').val('');
 
-        // Add an event listener to the delete button to remove the corresponding div
-        deleteButton.addEventListener('click', function() {
-            cloneContainer.removeChild(newDiv);
+            newDiv.find('input').each(function () {
+                const inputValue = $(this).val();
+                $(this).val(inputValue);
+            });
+            newDiv.find('.number').text(++divCount);
+            $('#show_tech').append(newDiv);
         });
 
-        // Append the delete button to the cloned div
-        newDiv.appendChild(deleteButton);
+        // Handle deleting a tech div
+        $(document).on('click', '.deleteButton', function () {
+            if (divCount > 1) {
+                $(this).closest('#container').remove();
 
-        // Append the cloned div to the container
-        cloneContainer.appendChild(newDiv);
+                divCount--;
+                $('.tech').each(function (index) {
+                    $(this).find('.number').text(index + 1);
+                });
+            }
+        });
+
     });
 </script>
+<!--ส่วนจัดการเครื่องมือช่าง--------->
+<script>
+    $(document).on('change', '.pipetteType', function () {
+        const parentDiv = $(this).closest('.tech');
+        var selectedValue = $(this).val();
+        parentDiv.find('.pipetteType1').val(selectedValue);
+    });
+
+    $(document).on('change', '.manufacture', function () {
+        const parentDiv = $(this).closest('.tech');
+        var selectedValue = $(this).val();
+        parentDiv.find('.manufacture1').val(selectedValue);
+    });
+
+    $(document).on('change', '.model', function () {
+        const parentDiv = $(this).closest('.tech');
+        var selectedValue = $(this).val();
+        parentDiv.find('.model1').val(selectedValue);
+    });
+</script>
+
 
 
 
@@ -682,7 +675,8 @@ $(".next").click(function(){
 
 // check-validate-----
 
-alert(1);
+
+// alert(1);
 
 	if(animating) return false;
 	animating = true;
@@ -721,7 +715,77 @@ alert(1);
 	});
 });
 
+
+
+
+
+
+
 $(".next-2").click(function(){
+
+alert('test');
+
+
+
+//save data------------------------------
+
+// FormA4-Tool-----------------formData
+var formData = [];
+
+$('.tech').each(function () {
+        var pipetteType1 = $(this).find('input[name="pipetteType1[]"]').val();
+        var manufacture1 = $(this).find('input[name="manufacture1[]"]').val();
+        var model1 = $(this).find('input[name="model1[]"]').val();
+        var volumn = $(this).find('input[name="volumn[]"]').val();
+        var serialNumber = $(this).find('input[name="serialNumber[]"]').val();
+        var IdentifyNumber = $(this).find('input[name="IdentifyNumber[]"]').val();
+        var calibration = $(this).find('input[name="calibration[]"]').val();
+        var gain = $(this).find('input[name="gain[]"]').val();
+        var otherPipette = $(this).find('input[name="otherPipette[]"]').val();
+
+        var file = $(this).find('input[name="file[]"]')[0].files[0]; // Get the first file input's file
+
+        // Create a FormData object to handle file uploads
+        var item = new FormData();
+        item.append('pipetteType1', pipetteType1);
+        item.append('manufacture1', manufacture1);
+        item.append('model1', model1);
+        item.append('volumn', volumn);
+        item.append('serialNumber', serialNumber);
+        item.append('IdentifyNumber', IdentifyNumber);
+        item.append('calibration', calibration);
+        item.append('gain', gain);
+        item.append('otherPipette', otherPipette);
+        item.append('file', file);
+
+        // Push the FormData object into the dataToSend array
+        formData.push(item);
+
+    });
+    // FormA4-Tool-----------------formData
+
+    // Make an AJAX POST request to submit the form data
+    $.ajax({
+        url: '{{url('form-request-service-send-data')}}', 
+        type: 'POST',
+        data: {
+        "_token": "{{ csrf_token() }}",
+        "formData": formData,
+        },
+        // data: formData, // Send the form data
+        success: function(item) {
+                    if(item.status=='success'){
+                        alert('success');
+                    }else{
+                        alert('fail');
+                    }
+                },
+    });
+//save data---------------------------------
+
+
+alert('check');
+return false;
 
 // check-validate-----
 
@@ -880,12 +944,19 @@ function search1() {
                 },
                 success: function(item) {
                     if(item.status=='success'){
-                        document.querySelector('#a1 input[name="companyName1"]').value = item.title;
+                        document.querySelector('#a1 input[name="companyName1"]').value = item.name_company;
+                        document.querySelector('#a1 input[name="department1"]').value = item.name_agency;
+                        document.querySelector('#a1 textarea[name="companyAddress1"]').value = item.address;
                         document.querySelector('#a1 select[name="province1"]').value = item.province;
+                        document.querySelector('#a1 input[name="zipcode1"]').value = item.zip_code;
+                        document.querySelector('#a1 input[name="tel1"]').value = item.phone;
+                        document.querySelector('#a1 input[name="fax1"]').value = item.fax;
+                        document.querySelector('#a1 input[name="taxpayerNo1"]').value = item.tax_number;
+                        document.querySelector('#a1 input[name="companyTypeName1"]').value = item.company_type_other;
 
                         var radioButtonsA1 = document.querySelectorAll('#a1 input[name="companyTypeInfo1"]');
                         for (var i = 0; i < radioButtonsA1.length; i++) {
-                        if (radioButtonsA1[i].value === item.bb) {
+                        if (radioButtonsA1[i].value === item.company_type) {
                         radioButtonsA1[i].checked = true;
                         } else {
                         radioButtonsA1[i].checked = false;
@@ -916,12 +987,19 @@ function search2() {
                 },
                 success: function(item) {
                     if(item.status=='success'){
-                        document.querySelector('#a2 input[name="companyName2"]').value = item.title;
+                        document.querySelector('#a2 input[name="companyName2"]').value = item.name_company;
+                        document.querySelector('#a2 input[name="department2"]').value = item.name_agency;
+                        document.querySelector('#a2 textarea[name="companyAddress2"]').value = item.address;
                         document.querySelector('#a2 select[name="province2"]').value = item.province;
+                        document.querySelector('#a2 input[name="zipcode2"]').value = item.zip_code;
+                        document.querySelector('#a2 input[name="tel2"]').value = item.phone;
+                        document.querySelector('#a2 input[name="fax2"]').value = item.fax;
+                        document.querySelector('#a2 input[name="taxpayerNo2"]').value = item.tax_number;
+                        document.querySelector('#a2 input[name="companyTypeName2"]').value = item.company_type_other;
 
                         var radioButtonsA2 = document.querySelectorAll('#a2 input[name="companyType2"]');
                         for (var i = 0; i < radioButtonsA2.length; i++) {
-                        if (radioButtonsA2[i].value === item.bb) {
+                        if (radioButtonsA2[i].value === item.company_type) {
                         radioButtonsA2[i].checked = true;
                         } else {
                         radioButtonsA2[i].checked = false;
@@ -974,70 +1052,6 @@ function copyAddress() {
   document.querySelector('#a2 input[name="companyTypeName2"]').value = inputFromA10;
 }
 </script>
-
-
-<!-- <script>
-    $(".next").click(function(){
-    // ...
-
-    // Assuming you have an input field with the ID 'companyName'
-    var companyName = $("#msform input[name='companyName']").val();
-
-    // You can add more variables for other form fields here
-
-    // Create a data object to send via AJAX
-    var formData = {
-        companyName: companyName,
-        // Add other form field data here
-    };
-
-    // Make an AJAX POST request to submit the form data
-    $.ajax({
-        url: '{{url('form-request-service')}}', // Set the URL to your form submission endpoint
-        type: 'POST', // Use POST method
-        data: formData, // Send the form data
-        success: function(response) {
-            // Handle the success response here
-            alert('Form submitted successfully');
-        },
-        error: function(xhr, status, error) {
-            // Handle errors here
-            alert('Error: ' + error);
-        }
-    });
-
-    // ...
-});
-</script> -->
-
-<!-- 
-<script>
-    $(".next").click(function(){
-    // ดึงข้อมูลรูปภาพจาก input file
-    var imageFile = $('#imageFile')[0].files[0];
-    
-    // สร้าง FormData เพื่อส่งไฟล์
-    var formData = new FormData();
-    formData.append('imageFile', imageFile);
-
-    // ทำ AJAX POST request เพื่อส่งไฟล์
-    $.ajax({
-        url: '{{url('form-request-service')}}', // เปลี่ยน URL ตามที่คุณต้องการ
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            // ดำเนินการหลังจากสำเร็จ
-            alert('File uploaded successfully');
-        },
-        error: function(xhr, status, error) {
-            // จัดการข้อผิดพลาด
-            alert('Error: ' + error);
-        }
-    });
-});
-</script> -->
 
 <script>
 // In your Javascript (external .js resource or <script> tag)
