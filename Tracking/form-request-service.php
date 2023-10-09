@@ -15,7 +15,10 @@
  ->get();
 
  ?>
-  <?php  $search=App\Models\form_data::orderByRaw("CONVERT(1name_company USING tis620) ASC")->get(); ?>
+  <?php $search = App\Models\form_data::select('1name_company', DB::raw('MAX(id) as max_id'))
+    ->groupBy('1name_company')
+    ->orderByRaw("CONVERT(1name_company USING tis620) ASC")
+    ->get(); ?>
 
     <div class="container">
     <h4 class="font-weight-700 pt-5 text-center">แจ้งขอรับบริการสอบเทียบเครื่องมือ</h4>
