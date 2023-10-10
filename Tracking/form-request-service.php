@@ -416,7 +416,7 @@
                                         <h6 class="fw-bold">ค้นหาจากฐานข้อมูล</h6>
                                         <div class="col-md-4 col-12">
                                             <label for="pipetteType">ประเภทเครื่องมือสอบเทียบ</label>
-                                            <select name="pipetteType" class="form-or-style pipetteType js-example-basic-single">
+                                            <select name="pipetteType" class="form-or-style pipetteType ">
                                             <option value="">เลือก</option>
                                                 <option value="เครื่องมือสอบเทียบ 1">เครื่องมือสอบเทียบ 1</option>
                                                 <option value="เครื่องมือสอบเทียบ 2">เครื่องมือสอบเทียบ 2</option>
@@ -425,7 +425,7 @@
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="manufacture">ยี่ห้อ</label>
-                                            <select name="manufacture" class="form-or-style manufacture js-example-basic-single">
+                                            <select name="manufacture" class="form-or-style manufacture ">
                                             <option value="">เลือก</option>
                                                 <option value="ยี่ห้อ 1">ยี่ห้อ 1</option>
                                                 <option value="ยี่ห้อ 2">ยี่ห้อ 2</option>
@@ -434,7 +434,7 @@
                                         </div>
                                         <div class="col-md-4 col-12">
                                             <label for="model">รุ่น</label>
-                                            <select name="model" class="form-or-style model js-example-basic-single">
+                                            <select name="model" class="form-or-style model ">
                                             <option value="">เลือก</option>
                                                 <option value="รุ่น 1">รุ่น 1</option>
                                                 <option value="รุ่น 2">รุ่น 2</option>
