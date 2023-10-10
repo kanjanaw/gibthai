@@ -14,6 +14,27 @@
  ->orderByRaw("CONVERT(name_th USING tis620) ASC")
  ->get();
 
+ $pd = App\Models\dataset_provinces::select('name_th', 'id', 'name_en')
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->first();
+
+ $amphur = App\Models\dataset_amphures::select('name_th', 'id', 'name_en','province_id')
+ ->where('province_id',$pd->id)
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->get();
+
+ $ad = App\Models\dataset_amphures::select('name_th', 'id', 'name_en','province_id')
+ ->where('province_id',$pd->id)
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->first();
+
+ $dis = App\Models\dataset_districts::select('name_th', 'id', 'name_en','amphure_id')
+ ->where('amphure_id',$ad->id)
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->get();
+
+
+
  ?>
   <?php $search = App\Models\form_data::select('1name_company', DB::raw('MAX(id) as max_id'))
     ->groupBy('1name_company')
@@ -71,18 +92,32 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province1" class="form-or-style" required>
+                                <select name="province1" class="form-or-style province1" required>
                                     @foreach($province as $ps)
                                     <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
                                     @endforeach
-                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
-                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
+                                <label for="province">อำเภอ/เขต*</label>
+                                <select name="am1" class="form-or-style am1" required>
+                                    @foreach($amphur as $am)
+                                    <option value="{{$am->name_th}}">{{$am->name_th}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label for="province">ตำบล/แขวง*</label>
+                                <select name="ds1" class="form-or-style ds1" required>
+                                    @foreach($dis as $ds)
+                                    <option value="{{$ds->name_th}}">{{$ds->name_th}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                           
+                            <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode1" class="form-or-style" required/>
+                                <input type="text" name="zipcode1" class="form-or-style zipcode1" readonly required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
@@ -177,18 +212,34 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province2" class="form-or-style" required>
+                                <select name="province2" class="form-or-style province2" required>
                                 @foreach($province as $ps)
                                     <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
                                     @endforeach
-                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
-                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
+                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label for="province">อำเภอ/เขต*</label>
+                                <select name="am2" class="form-or-style am2" required>
+                                    @foreach($amphur as $am)
+                                    <option value="{{$am->name_th}}">{{$am->name_th}}</option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label for="province">ตำบล/แขวง*</label>
+                                <select name="ds2" class="form-or-style ds2" required>
+                                    @foreach($dis as $ds)
+                                    <option value="{{$ds->name_th}}">{{$ds->name_th}}</option>
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode2" class="form-or-style" required/>
+                                <input type="text" name="zipcode2" class="form-or-style zipcode2" readonly required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
@@ -243,18 +294,34 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="province">จังหวัด*</label>
-                                <select name="province3" class="form-or-style" required>
+                                <select name="province3" class="form-or-style province3" required>
                                 @foreach($province as $ps)
                                     <option value="{{$ps->name_th}}">{{$ps->name_th}}</option>
                                     @endforeach
-                                    <!-- <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
-                                    <option value="กาญจนบุรี">กาญจนบุรี</option>
-                                    <option value="กาฬสินธุ์">กาฬสินธุ์</option> -->
+                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label for="province">อำเภอ/เขต*</label>
+                                <select name="am3" class="form-or-style am3" required>
+                                    @foreach($amphur as $am)
+                                    <option value="{{$am->name_th}}">{{$am->name_th}}</option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <label for="province">ตำบล/แขวง*</label>
+                                <select name="ds3" class="form-or-style ds3" required>
+                                    @foreach($dis as $ds)
+                                    <option value="{{$ds->name_th}}">{{$ds->name_th}}</option>
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode3" class="form-or-style" required/>
+                                <input type="text" name="zipcode3" class="form-or-style zipcode3" readonly required/>
                             </div>
                         </div>
                         <!-- end: form ข้อมูลลูกค้า ในใบรับรองสอบเทียบ -->
@@ -957,6 +1024,11 @@ function search1() {
                         document.querySelector('#a1 input[name="taxpayerNo1"]').value = item.tax_number;
                         document.querySelector('#a1 input[name="companyTypeName1"]').value = item.company_type_other;
 
+                        var am = $('.am1');
+                        var ds = $('.ds1');
+                        am.html('<option value="'+item.am+'">'+item.am+'</option>');
+                        ds.html('<option value="'+item.ds+'">'+item.ds+'</option>');
+
                         var radioButtonsA1 = document.querySelectorAll('#a1 input[name="companyTypeInfo1"]');
                         for (var i = 0; i < radioButtonsA1.length; i++) {
                         if (radioButtonsA1[i].value === item.company_type) {
@@ -1000,6 +1072,11 @@ function search2() {
                         document.querySelector('#a2 input[name="taxpayerNo2"]').value = item.tax_number;
                         document.querySelector('#a2 input[name="companyTypeName2"]').value = item.company_type_other;
 
+                        var am = $('.am2');
+                        var ds = $('.ds2');
+                        am.html('<option value="'+item.am+'">'+item.am+'</option>');
+                        ds.html('<option value="'+item.ds+'">'+item.ds+'</option>');
+
                         var radioButtonsA2 = document.querySelectorAll('#a2 input[name="companyType2"]');
                         for (var i = 0; i < radioButtonsA2.length; i++) {
                         if (radioButtonsA2[i].value === item.company_type) {
@@ -1025,6 +1102,8 @@ function copyAddress() {
   var inputFromA2 = document.querySelector('#a1 input[name="department1"]').value;
   var inputFromA3 = document.querySelector('#a1 textarea[name="companyAddress1"]').value;
   var inputFromA4 = document.querySelector('#a1 select[name="province1"]').value;
+  var inputFromA41 = document.querySelector('#a1 select[name="am1"]').value;
+  var inputFromA42 = document.querySelector('#a1 select[name="ds1"]').value;
   var inputFromA5 = document.querySelector('#a1 input[name="zipcode1"]').value;
   var inputFromA6 = document.querySelector('#a1 input[name="tel1"]').value;
   var inputFromA7 = document.querySelector('#a1 input[name="fax1"]').value;
@@ -1037,10 +1116,17 @@ function copyAddress() {
   document.querySelector('#a2 input[name="department2"]').value = inputFromA2;
   document.querySelector('#a2 textarea[name="companyAddress2"]').value = inputFromA3;
   document.querySelector('#a2 select[name="province2"]').value = inputFromA4;
+//   document.querySelector('#a2 select[name="am2"]').value = inputFromA41;
+//   document.querySelector('#a2 select[name="ds2"]').value = inputFromA42;
   document.querySelector('#a2 input[name="zipcode2"]').value = inputFromA5;
   document.querySelector('#a2 input[name="tel2"]').value = inputFromA6;
   document.querySelector('#a2 input[name="fax2"]').value = inputFromA7;
   document.querySelector('#a2 input[name="taxpayerNo2"]').value = inputFromA8;
+
+  var am = $('.am2');
+  var ds = $('.ds2');
+  am.html('<option value="'+inputFromA41+'">'+inputFromA41+'</option>');
+  ds.html('<option value="'+inputFromA42+'">'+inputFromA42+'</option>');
   
   // Set the radio button in div a2 based on the value from div a1
   var radioButtonsA2 = document.querySelectorAll('#a2 input[name="companyType2"]');
@@ -1062,6 +1148,194 @@ $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".province1").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var amphureObject = $('.am1');
+            amphureObject.html('<option value="">เลือกอำเภอ</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_ampure')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $.each(data.div, function(div, item) {
+                        amphureObject.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".am1").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var district = $('.ds1');
+            district.html('<option value="">เลือกตำบล</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_dis')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode1').val(data.code);
+                    $.each(data.div, function(div, item) {
+                        district.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".province2").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var amphureObject = $('.am2');
+            amphureObject.html('<option value="">เลือกอำเภอ</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_ampure')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $.each(data.div, function(div, item) {
+                        amphureObject.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".am2").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var district = $('.ds2');
+            district.html('<option value="">เลือกตำบล</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_dis')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode2').val(data.code);
+                    $.each(data.div, function(div, item) {
+                        district.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".province3").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var amphureObject = $('.am3');
+            amphureObject.html('<option value="">เลือกอำเภอ</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_ampure')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $.each(data.div, function(div, item) {
+                        amphureObject.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $(".am3").on("change", function() {
+            var selectValue = $(this).val();
+    console.log(selectValue);
+            var district = $('.ds3');
+            district.html('<option value="">เลือกตำบล</option>');
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_dis')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode3').val(data.code);
+                    $.each(data.div, function(div, item) {
+                        district.append(
+                            $('<option></option>').val(item.name_th).html(item.name_th)
+                        );
+                    });
+                }
+            });
+        });
+    });
+    </script>
+
 
 
 </html>
