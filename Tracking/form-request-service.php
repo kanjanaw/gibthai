@@ -838,8 +838,7 @@ $('.tech').each(function () {
     $.ajax({
         url: '{{url('form-request-service-send-data')}}', 
         type: 'POST',
-        data: {"formData": formData,
-         }, // Send the FormData object directly
+        data: formData, // Send the FormData object directly
     processData: false, // Prevent jQuery from processing the data
     contentType: false, // Prevent jQuery from setting the content type
     headers: {
