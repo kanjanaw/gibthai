@@ -94,7 +94,7 @@
                         <div id="a1" class="row py-2">
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
-                            <div class="col-md-6 col-12 my-2" >
+                            <div class="col-md-6 col-12" >
                                 <!-- <input type="text" name="companyNo1" class="form-or-style js-example-basic-single"/> -->
                                 <select class="form-or-style js-example-basic-single w-100" name="companyNo1">
                                 <option value="">ค้นหา</option>
