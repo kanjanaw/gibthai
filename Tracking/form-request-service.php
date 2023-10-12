@@ -1176,6 +1176,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+
+                     $('.zipcode1').val(null);
+
                     $.each(data.div, function(div, item) {
                         amphureObject.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1205,6 +1208,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+
+                     $('.zipcode1').val(null);
+
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1259,6 +1265,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+
+                     $('.zipcode2').val(null);
+
                     $.each(data.div, function(div, item) {
                         amphureObject.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1288,6 +1297,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+
+                     $('.zipcode2').val(null);
+
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1339,6 +1351,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+
+                     $('.zipcode3').val(null);
+                     
                     $.each(data.div, function(div, item) {
                         amphureObject.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1368,6 +1383,9 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
+                    
+                    $('.zipcode3').val(null);
+
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
