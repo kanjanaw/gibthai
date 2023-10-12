@@ -1205,7 +1205,6 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
-                    $('.zipcode1').val(data.code);
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
@@ -1216,6 +1215,29 @@ $(document).ready(function() {
         });
     });
     </script>
+
+
+<script>
+    $(document).ready(function() {
+        $(".ds1").on("change", function() {
+            var selectValue = $(this).val();
+        console.log(selectValue);
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_zipcode')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode1').val(data.code);
+                }
+            });
+        });
+    });
+    </script>
+
 
 
 
@@ -1266,12 +1288,32 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
-                    $('.zipcode2').val(data.code);
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
                         );
                     });
+                }
+            });
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        $(".ds2").on("change", function() {
+            var selectValue = $(this).val();
+        console.log(selectValue);
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_zipcode')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode2').val(data.code);
                 }
             });
         });
@@ -1326,12 +1368,33 @@ $(document).ready(function() {
                 },
                 success: function(data) {
                     var op = '';
-                    $('.zipcode3').val(data.code);
                     $.each(data.div, function(div, item) {
                         district.append(
                             $('<option></option>').val(item.name_th).html(item.name_th)
                         );
                     });
+                }
+            });
+        });
+    });
+    </script>
+
+
+<script>
+    $(document).ready(function() {
+        $(".ds3").on("change", function() {
+            var selectValue = $(this).val();
+        console.log(selectValue);
+            $.ajax({
+                type: 'POST',
+                url: '{{url('/get_zipcode')}}',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    selectValue: selectValue,
+                },
+                success: function(data) {
+                    var op = '';
+                    $('.zipcode3').val(data.code);
                 }
             });
         });
