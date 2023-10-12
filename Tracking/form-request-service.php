@@ -5,6 +5,32 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<style>
+	.select2-container--default, .select2-selection--single {
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 0.9em;
+    border: 1px solid #d9d9d9;
+    height: 3em;
+    margin: 0.3em 0em;
+}
+
+.select2-container--default:focus, .select2-selection--single:focus {
+    border: 1px solid #08cb70;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: black;
+    line-height: 28px;
+}
+	
+	.select2-container .select2-selection--single {
+    display: contents;
+}
+
+	</style>
+	
+	
 </head>
 <body>
 @include('layouts.inc_topmenu')
@@ -19,19 +45,25 @@
  ->first();
 
  $amphur = App\Models\dataset_amphures::select('name_th', 'id', 'name_en','province_id')
- ->where('province_id',$pd->id)
+ ->where('province_id',@$pd->id)
  ->orderByRaw("CONVERT(name_th USING tis620) ASC")
  ->get();
 
  $ad = App\Models\dataset_amphures::select('name_th', 'id', 'name_en','province_id')
- ->where('province_id',$pd->id)
+ ->where('province_id',@$pd->id)
  ->orderByRaw("CONVERT(name_th USING tis620) ASC")
  ->first();
 
- $dis = App\Models\dataset_districts::select('name_th', 'id', 'name_en','amphure_id')
- ->where('amphure_id',$ad->id)
+ $dis = App\Models\dataset_districts::select('name_th', 'id', 'name_en','amphure_id','zip_code')
+ ->where('amphure_id',@$ad->id)
  ->orderByRaw("CONVERT(name_th USING tis620) ASC")
  ->get();
+
+ $code = App\Models\dataset_districts::select('name_th', 'id', 'name_en','amphure_id','zip_code')
+ ->where('amphure_id',@$ad->id)
+ ->orderByRaw("CONVERT(name_th USING tis620) ASC")
+ ->first();
+
 
 
 
@@ -62,9 +94,9 @@
                         <div id="a1" class="row py-2">
                             <label for="companyNo">รหัสบริษัท*</label>
                             <small >*ค้นหาและเลือกข้อมูลลูกค้าเก่าจากฐานข้อมูล ส่วนลูกค้าใหม่ข้ามช่องนี้ได้เลย</small>
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-6 col-12 my-2" >
                                 <!-- <input type="text" name="companyNo1" class="form-or-style js-example-basic-single"/> -->
-                                <select class="form-or-style js-example-basic-single" name="companyNo1">
+                                <select class="form-or-style js-example-basic-single w-100" name="companyNo1">
                                 <option value="">ค้นหา</option>
                                 @foreach($search as $item)
                                 <option value="{{$item['1name_company']}}">{{$item['1name_company']}}</option>
@@ -117,7 +149,7 @@
                            
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode1" class="form-or-style zipcode1" readonly required/>
+                                <input type="text" name="zipcode1" class="form-or-style zipcode1" value="{{@$code->zip_code}}" readonly required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
@@ -239,7 +271,7 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode2" class="form-or-style zipcode2" readonly required/>
+                                <input type="text" name="zipcode2" class="form-or-style zipcode2" value="{{@$code->zip_code}}" readonly required/>
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="tel">โทรศัพท์</label>
@@ -321,7 +353,7 @@
                             </div>
                             <div class="col-md-6 col-12">
                                 <label for="zipcode">รหัสไปรษณีย์*</label>
-                                <input type="text" name="zipcode3" class="form-or-style zipcode3" readonly required/>
+                                <input type="text" name="zipcode3" class="form-or-style zipcode3" value="{{@$code->zip_code}}" readonly required/>
                             </div>
                         </div>
                         <!-- end: form ข้อมูลลูกค้า ในใบรับรองสอบเทียบ -->
@@ -1144,15 +1176,15 @@ function copyAddress() {
 }
 </script>
 
+
+
 <script>
-// In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
+    $('.js-example-basic-single').addClass('w-100'); // Add the class 'w-100'
     $('.js-example-basic-single').select2();
+    $('.select2').addClass('w-100');
 });
 </script>
-
-
-
 
 
 
