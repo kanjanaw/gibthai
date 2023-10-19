@@ -139,16 +139,16 @@
                 <li>
                     <a href="#">Service Calendar</a>
                 </li>
-                <li>
+                <li @if($pageName="customer" || $pageName="customer-type-address" || $pageName="customer-payment-due") class="active" @endif>
                 <a href="#customerSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">ลูกค้าและคู่ค้า</a>
                 <ul class="collapse list-unstyled" id="customerSubmenu">
-                    <li>
+                    <li @if(pageName="customer") class="active" @endif>
                         <a href="customer.php" class="submenu-sidebar">ข้อมูลลูกค้าและคู่ค้า</a>
                     </li>
-                    <li>
+                    <li @if(pageName="customer-type-address") class="active" @endif>
                         <a href="customer-type-address.php" class="submenu-sidebar">ประเภทที่อยู่</a>
                     </li>
-                    <li>
+                    <li @if(pageName="customer-payment-due") class="active" @endif>
                         <a href="customer-payment-due.php" class="submenu-sidebar">กำหนดการชำระเงิน</a>
                     </li>
                 </ul>
