@@ -825,17 +825,51 @@ $(".next").click(function(){
 
 $(".next-2").click(function(){
 
-alert('test');
-
-
-
 //save data------------------------------
+
+var formData = new FormData();
+
+// FormA1-FormA3-----------------formA1
+var fields = [
+  'companyName1', 'department1', 'companyAddress1', 'province1', 'am1', 'ds1',
+  'zipcode1', 'tel1', 'fax1', 'taxpayerNo1', 'companyTypeInfo1',
+  'companyTypeName1', 'contactName1', 'email1', 'contactTel1', 'lineId1',
+
+  'companyName2', 'department2', 'companyAddress2', 'province2', 'am2', 'ds2',
+  'zipcode2', 'tel2', 'fax2', 'taxpayerNo2', 'companyType2',
+  'companyTypeName2',
+
+  'companyName3', 'department3', 'companyAddress3', 'province3', 'am3', 'ds3',
+  'zipcode3', 'quotationNo', 'serviceType', 'calibrationType', 'dueDate',
+  'dueDateSelect','report','nextSchedule','nextScheduleSelect',
+];
+
+// Create an empty object to store the form data
+// var formA1 = new FormData();
+
+// Loop through the fields and populate formData
+fields.forEach(function(field) {
+  var element = document.querySelector('#msform input[name="' + field + '"]') ||
+                document.querySelector('#msform textarea[name="' + field + '"]') ||
+                document.querySelector('#msform select[name="' + field + '"]');
+
+                // alert(element.value);
+                if (element) {
+                var Book=element.value;
+                formData.append(field, Book);
+                }
+});
+
+
+// FormA1-FormA3-----------------formA1
+
 
 // FormA4-Tool-----------------formData
 
-    var formData = new FormData();
-
 $('.tech').each(function () {
+    var companyName1 = $(this).find('input[name="companyName1"]').val();
+    var department1 = $(this).find('input[name="department1"]').val();
+
     var pipetteType1 = $(this).find('input[name="pipetteType1[]"]').val();
     var manufacture1 = $(this).find('input[name="manufacture1[]"]').val();
     var model1 = $(this).find('input[name="model1[]"]').val();
@@ -849,6 +883,9 @@ $('.tech').each(function () {
     var file = $(this).find('input[name="file[]"]')[0].files[0]; // Get the first file input's file
 
     // Append data to the FormData object
+    formData.append('companyName1', companyName1);
+    formData.append('department1', department1);
+
     formData.append('pipetteType1[]', pipetteType1);
     formData.append('manufacture1[]', manufacture1);
     formData.append('model1[]', model1);
@@ -878,68 +915,66 @@ $('.tech').each(function () {
     },
         // data: formData, // Send the form data
         success: function(item) {
-                    if(item.status=='success'){
-                        alert('success');
-                    }else{
-                        alert('fail');
-                    }
+                    // if(item.status=='success'){
+                    //     alert('success');
+                    // }else{
+                    //     alert('fail');
+                    // }
                 },
     });
 //save data---------------------------------
 
-
-alert('check');
-return false;
-
 // check-validate-----
 
-var fieldsetT2 = document.getElementById('T2');
-var requiredElements = fieldsetT2.querySelectorAll('select[required], input[required], textarea[required]');
+// var fieldsetT2 = document.getElementById('T2');
+// var requiredElements = fieldsetT2.querySelectorAll('select[required], input[required], textarea[required]');
 
-var isValid = true;
+// var isValid = true;
 
-for (var i = 0; i < requiredElements.length; i++) {
-    var element = requiredElements[i];
-    if (element.value.trim() === '') {
-        alert('Please complete the required field.');
-        isValid = false;
-        break; // Exit the loop early if a field is not valid
-    }
-}
+// for (var i = 0; i < requiredElements.length; i++) {
+//     var element = requiredElements[i];
+//     if (element.value.trim() === '') {
+//         alert('Please complete the required field.');
+//         isValid = false;
+//         break; // Exit the loop early if a field is not valid
+//     }
+// }
 
-if (!isValid) {
-    return false; // Prevent further action if any field is not valid
-}
+// if (!isValid) {
+//     return false; // Prevent further action if any field is not valid
+// }
    
-var serialNumber = $("input[name='serialNumber[]']");
-var IdentifyNumber = $("input[name='IdentifyNumber[]']");
-if (serialNumber.val() === '' && IdentifyNumber.val() === '') {
-    alert('PLease Check serialNumber or IdentifyNumber.');
-    return false;
-}
+// var serialNumber = $("input[name='serialNumber[]']");
+// var IdentifyNumber = $("input[name='IdentifyNumber[]']");
+// if (serialNumber.val() === '' && IdentifyNumber.val() === '') {
+//     alert('PLease Check serialNumber or IdentifyNumber.');
+//     return false;
+// }
 
-var recaptchaResponse = $("#html_element textarea[name='g-recaptcha-response']");
-// Check if the reCAPTCHA response is empty
-if (recaptchaResponse.val() === '') {
-    alert('PLease Check reCAPTCHA.');
-    return false;
-}
+// var recaptchaResponse = $("#html_element textarea[name='g-recaptcha-response']");
+// // Check if the reCAPTCHA response is empty
+// if (recaptchaResponse.val() === '') {
+//     alert('PLease Check reCAPTCHA.');
+//     return false;
+// }
 
-var consentCheckbox = $("#consentaccept");
-// Check if the checkbox is not checked
-if (!consentCheckbox.is(":checked")) {
-    alert('You must accept the consent checkbox.');
-    return false;
-}
+// var consentCheckbox = $("#consentaccept");
+// // Check if the checkbox is not checked
+// if (!consentCheckbox.is(":checked")) {
+//     alert('You must accept the consent checkbox.');
+//     return false;
+// }
 
 
 // check-validate-----
 
-alert(2);
+
 
 // save---data---
 
 // save---data---
+
+
 
 	if(animating) return false;
 	animating = true;
