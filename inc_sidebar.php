@@ -190,7 +190,10 @@
                     </li>
                 </ul>
                 </li>
-                <li>
+
+                <li <?php if(in_array(@$pageName, ["quotation",])) 
+                echo 'class="active"'; 
+                ?>>
                 <a href="quotation.php">ใบเสนอราคา</a>
                 </li>
 
