@@ -649,7 +649,7 @@
                         <!-- end: Consent form -->
  
                         <button type="button" name="previous" class="previous action-button-previous my-4 mb-5 mx-2 btn-25-50">ย้อนกลับ</button>
-                        <button type="button" name="next" class="next-2 action-button my-4 mb-5 mx-2 btn-25-50">ส่งข้อมูล</button>
+                        <button type="button" name="next" class="next-2 action-button my-4 mb-5 mx-2 btn-25-50">ส่งข้อมูล<div id="output"></div></button>
                     
                     </fieldset  >
                     <!-- end: form ข้อมูลเครื่องมือสอบเทียบ -->
@@ -824,6 +824,10 @@ $(".next").click(function(){
 
 
 $(".next-2").click(function(){
+    const myButton = document.querySelector(".next-2");
+    myButton.disabled = true; // ไม่ให้คลิก
+
+    document.getElementById('output').textContent = 'กำลังประมวลผล...';
 
 //save data------------------------------
 
