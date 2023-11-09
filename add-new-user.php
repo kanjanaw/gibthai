@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
+<?php   $pageName = "user-management";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
-<?php require('inc_user.php'); ?>
 
-<div class="container-inner">
+
+<div class="px-4">
     <div class="breadcrumb" style="--bs-breadcrumb-divider: '>';">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -22,7 +23,7 @@
         </div>
 
         <!-- table menu -->
-        <div class="my-4">
+        <div class="my-md-4 my-2">
                         <!-- ข้อมูลพนักงานและผู้ใช้งาน -->
                         <h6 class="p-2 bg-e5e5e5 fw-bold">ข้อมูลพนักงานและผู้ใช้งาน</h6>
                             <div class="row py-3">
@@ -178,6 +179,7 @@
 
 
     </div>
+</div>
 </div>
 
 </body>
