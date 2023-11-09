@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
+<?php   $pageName = "pipettes-type";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
-<?php require('inc_user.php'); ?>
 
 
-<div class="container-inner">
+<div class="px-4">
     <div class="breadcrumb" style="--bs-breadcrumb-divider: '>';">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="pipettes.php">เครื่องมือสอบเทียบ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">ประเภทเครื่องมือ</li>
+                <li class="breadcrumb-item active" aria-current="page">ประเภทเครื่องมือสอบเทียบ</li>
             </ol>
         </nav>
     </div>
@@ -23,7 +23,7 @@
         </div>
 
         <form action="">
-            <div class="row py-3">
+            <div class="row py-md-3">
                 <div class="col-md-6 col-12">
                     <div class="row">
                         <label for="" class="col-sm-4 col-form-label">ประเภทเครื่องมือสอบเทียบ*</label>
@@ -33,15 +33,19 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
-                        <div class="col-md-5 form-check d-inline-block">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">งานสอบเทียบ</label>
+                    <div class="row">
+                        <label for="" class="col-sm-4 col-form-label">ประเภทงาน*</label>
+                        <div class="col-sm-8">
+                            <div class="col-md-6 col-12 form-check d-inline-block">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">งานสอบเทียบ</label>
+                            </div>
+                            <div class="col-md-6 col-12 form-check d-inline-block">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                                <label class="form-check-label" for="exampleCheck2">งานซ่อม</label>
+                            </div>
                         </div>
-                        <div class="col-md-6 form-check d-inline-block">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                            <label class="form-check-label" for="exampleCheck2">งานซ่อม</label>
-                        </div>
-
+                    </div>
                 </div>
 
                 <div class="col-md-6 col-12">
@@ -79,9 +83,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 d-md-flex justify-content-center justify-content-md-end mt-md-0 mt-2">
                     <!-- add new -->
-                    <a class="btn-black bg-green-00 border-green-00 py-1 px-5 float-end" type="button" href="">เพิ่ม/บันทึก</a>
+                    <div class="d-grid gap-2">
+                        <a class="btn-black bg-green-00 border-green-00 py-1 px-5 text-center" type="button" href="">เพิ่ม/บันทึก</a>
+                    </div>
                 </div>
             </div>
         </form>
@@ -89,15 +95,21 @@
 
         <!-- table menu -->
         <div class="row d-flex align-items-center mb-2 mt-4" id="datatable_length">
-            <div class="col-6">
-                <input type="text" name="" class="form-or-style my-0" placeholder="ค้นหา"/>
+            <div class="col-md-8 order-1 order-md-0 mt-2 mt-md-0">
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" name="" class="form-or-style my-0" placeholder="ค้นหา"/>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-grid d-md-inline">
+                            <button type="button" class="btn-black"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-auto g-0">
-                <button type="button" class="btn-black"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
-            </div>
-            <div class="col-auto d-inline-block ms-auto">
-                <button type="button" class="btn-grey">นำเข้า Excel</button>
-                <button type="button" class="btn-grey">นำออก Excel</button>
+            <div class="col-md-auto col-12 text-center ms-auto py-1 py-md-0 order-0 order-md-1">
+                <button class="btn-grey" type="button" >นำเข้า Excel</button>
+                <button class="btn-grey" type="button" >นำออก Excel</button>
             </div>
         </div>
         <!-- end: table menu -->
@@ -105,7 +117,7 @@
 
         <!-- pipettes type table -->
         <div class="table-responsive">
-            <table class="table table-hover" id="pipettesTypeTable">
+            <table class="table table-hover text-nowrap" id="pipettesTypeTable">
             <thead>
                 <tr>
                 <th scope="col" data-field="pipetttesType">ประเภทเครื่องมือสอบเทียบ</th>
@@ -121,103 +133,173 @@
             <tbody>
                 <tr>
                     <td>Pipette</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2" checked></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
                     <td>DC_01/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td>SR_00/yy/####</td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red" data-bs-toggle="modal" data-bs-target="#" ><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Refrigerator/Oven/Freezer</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_02/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Dispenser</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_03/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Bath</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_04/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Autoclave</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_05/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Balance</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_06/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>pH meter</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_07/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Centrifuge</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_09/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Burette</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_10/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Digital thermometer</td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check1" checked></td>
-                    <td class="text-center"><input type="checkbox" class="form-check-input" id="Check2"></td>
+                    <td class="h4 text-center"><i class="fas fa-check-square" style="color: #00ba63;"></i></td>
+                    <td class="text-center">-</td>
                     <td>DC_11/yy/####</td>
                     <td>NC_00/yy/####</td>
                     <td></td>
                     <td>Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -253,6 +335,8 @@
 
     </div>
 </div>
+</div>
 
 </body>
 </html>
+<?php require('inc_footer.php'); ?>

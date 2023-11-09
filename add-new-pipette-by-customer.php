@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
-<?php   $pageName = "pipettes";  ?>
+<?php   $pageName = "customer";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
@@ -10,7 +10,8 @@
     <div class="breadcrumb" style="--bs-breadcrumb-divider: '>';">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="pipettes.php">เครื่องมือสอบเทียบ</a></li>
+                <li class="breadcrumb-item"><a href="customer.php">ลูกค้า</a></li>
+                <li class="breadcrumb-item"><a href="edit-customer.php">แก้ไขข้อมูลลูกค้า</a></li>
                 <li class="breadcrumb-item active" aria-current="page">เพิ่มเครื่องมือสอบเทียบใหม่</li>
             </ol>
         </nav>
@@ -18,7 +19,7 @@
 
     <div class="panel">
         <div class="d-flex justify-content-between">
-            <h4>เพิ่มเครื่องมือสอบเทียบใหม่</h4>
+            <h4>เพิ่มเครื่องมือสอบเทียบใหม่ - มหาวิทยาลัยธรรมศาสตร์ (ศูนย์รังสิต)</h4>
         </div>
 
         <!-- table menu -->
@@ -204,14 +205,11 @@
                         <!-- ข้อมูลลูกค้า (ผู้ดูแลเครื่องมือสอบเทียบ) -->
                         <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลลูกค้า (ผู้ดูแลเครื่องมือสอบเทียบ)</h6>
                         <div class="row py-2">
-                                <div class="col-12 mb-3">
-                                    <button type="button" class="btn-black" data-bs-toggle="modal" data-bs-target="#searchCompanyForm"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหาข้อมูลบริษัท</button>
-                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="row">
                                         <label for="" class="col-sm-4 col-form-label">รหัสบริษัท* :</label>
                                         <div class="col-sm-8">
-                                            <input type="search" name="" class="form-or-style" disabled/>
+                                            <input type="search" name="" class="form-or-style" value="12345" disabled/>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +217,7 @@
                                     <div class="row">
                                         <label for="" class="col-sm-4 col-form-label">ชื่อบริษัท :</label>
                                         <div class="col-sm-8">
-                                            <input type="text" name="" class="form-or-style" disabled/>
+                                            <input type="text" name="" class="form-or-style" value="มหาวิทยาลัยธรรมศาสตร์ (ศูนย์รังสิต)" disabled/>
                                         </div>
                                     </div>
                                 </div>
