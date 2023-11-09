@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 </head>
@@ -62,7 +62,7 @@
       </li>
 
       <li>
-        <a class="menu-sidebar" href="">ใบรับ - ส่งเครื่อง</a>
+        <a class="menu-sidebar" href="gr-invoice.php">ใบรับ - ส่งเครื่อง</a>
       </li>
 
       <li>
@@ -112,4 +112,206 @@
 </div>
 
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+
+        <div class="wrapper d-flex align-items-stretch">
+			<nav class="bg-white sidebar-col p-0" id="sidebar">
+			<div class="p-0 my-3">
+                <a href="" class=" p-4">
+                    <img src="images/logo.png" width="50%" alt="">
+                </a>
+                <ul class="list-unstyled components mb-5 mt-4">
+                <li >
+                    <a href="#homeSubmenu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle d-flex justify-content-between align-items-center">หน้าหลัก</a>
+                    <ul class="list-unstyled collapse" id="homeSubmenu" style="">
+                    <li>
+                        <a href="#" class="submenu-sidebar">Summary Report</a>
+                    </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Service Calendar</a>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["customer", "customer-type-address", "customer-payment-due"])) echo 'class="active"'; ?>>
+                <a href="#customerSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">ลูกค้าและคู่ค้า</a>
+                <ul class="collapse list-unstyled" id="customerSubmenu">
+                    <li <?php if(@$pageName=="customer") echo 'class="active"'; ?>>
+                        <a href="customer.php" class="submenu-sidebar">ข้อมูลลูกค้าและคู่ค้า</a>
+                    </li>
+                    <li <?php if(@$pageName=="customer-type-address") echo 'class="active"'; ?>>
+                        <a href="customer-type-address.php" class="submenu-sidebar">ประเภทที่อยู่</a>
+                    </li>
+                    <li <?php if(@$pageName=="customer-payment-due") echo 'class="active"'; ?>>
+                        <a href="customer-payment-due.php" class="submenu-sidebar">กำหนดการชำระเงิน</a>
+                    </li>
+                </ul>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["pipettes-list", "pipettes", "pipettes-type","pipettes-subtype","pipettes-manufacturer",
+                "pipettes-model","pipettes-volumn","pipettes-status",]))
+                echo 'class="active"';
+                ?>>
+                <a href="#pipettesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">เครื่องมือสอบเทียบ</a>
+                <ul class="collapse list-unstyled" id="pipettesSubmenu">
+                    <li <?php if(@$pageName=="pipettes-list") echo 'class="active"'; ?>>
+                        <a href="pipettes-list.php" class="submenu-sidebar">ข้อมูลรายการเครื่องมือ</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes") echo 'class="active"'; ?>>
+                        <a href="pipettes.php" class="submenu-sidebar">ข้อมูลเครื่องมือสอบเทียบ</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-type") echo 'class="active"'; ?>>
+                        <a href="pipettes-type.php" class="submenu-sidebar">ประเภทเครื่องมือ</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-subtype") echo 'class="active"'; ?>>
+                        <a href="pipettes-subtype.php" class="submenu-sidebar">ประเภทย่อยเครื่องมือ</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-manufacturer") echo 'class="active"'; ?>>
+                        <a href="pipettes-manufacturer.php" class="submenu-sidebar">ยี่ห้อ</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-model") echo 'class="active"'; ?>>
+                        <a href="pipettes-model.php" class="submenu-sidebar">รุ่น</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-volumn") echo 'class="active"'; ?>>
+                        <a href="pipettes-volumn.php" class="submenu-sidebar">ขนาด</a>
+                    </li>
+                    <li <?php if(@$pageName=="pipettes-status") echo 'class="active"'; ?>>
+                        <a href="pipettes-status.php" class="submenu-sidebar">สถานะเครื่องมือ</a>
+                    </li>
+                </ul>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["quotation",]))
+                echo 'class="active"';
+                ?>>
+                <a href="quotation.php">ใบเสนอราคา</a>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["gr-invoice", "gr-invoice-status", "gr-invoice-method"]))
+                echo 'class="active"';
+                ?>>
+                <a href="#grInvoiceSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">ใบรับ - ส่งเครื่อง</a>
+                <ul class="collapse list-unstyled" id="grInvoiceSubmenu">
+                    <li <?php if(@$pageName=="gr-invoice") echo 'class="active"'; ?>>
+                        <a href="gr-invoice.php" class="submenu-sidebar">ข้อมูลใบรับ - ส่งเครื่อง</a>
+                    </li>
+                    <li <?php if(@$pageName=="gr-invoice-status") echo 'class="active"'; ?>>
+                        <a href="gr-invoice-status.php" class="submenu-sidebar">สถานะใบรับ - ส่งเครื่อง</a>
+                    </li>
+                    <li <?php if(@$pageName=="gr-invoice-method") echo 'class="active"'; ?>>
+                        <a href="gr-invoice-method.php" class="submenu-sidebar">วิธีการรับ - ส่งเครื่อง</a>
+                    </li>
+                </ul>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["car-table"]))
+                echo 'class="active"';
+                ?>>
+                <a href="#serviceSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">งานบริการสอบเทียบ</a>
+                <ul class="collapse list-unstyled submenu-sidebar" id="serviceSubmenu">
+                    <li>
+                        <a href="service.php">งานบริการสอบเทียบ</a>
+                    </li>
+                    <li>
+                        <a href="service-status.php">สถานะงานบริการ</a>
+                    </li>
+                </ul>
+                </li>
+                <li>
+                <a href="#">งานบริการภายนอก</a>
+                </li>
+                <li>
+                <a href="#">เครื่องมือช่าง</a>
+                </li>
+                <li>
+                <a href="#">ตารางงานช่างวิศวกร</a>
+                </li>
+                <li <?php if(@$pageName=="car-table") echo 'class="active"'; ?>>
+                <a href="car-table.php">ตารางการใช้งานรถยนต์</a>
+                </li>
+
+                <li <?php if(in_array(@$pageName, ["user-management","user-role"]))
+                echo 'class="active"';
+                ?>>
+                <a href="#userSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle d-flex justify-content-between align-items-center">พนักงานและผู้ใช้งาน</a>
+                <ul class="collapse list-unstyled" id="userSubmenu">
+                    <li <?php if(@$pageName=="user-management") echo 'class="active"'; ?>>
+                        <a href="user-management.php" class="submenu-sidebar">พนักงานและผู้ใช้งาน</a>
+                    </li>
+                    <li <?php if(@$pageName=="user-role") echo 'class="active"'; ?>>
+                        <a href="user-role.php" class="submenu-sidebar">กำหนดสิทธิ์การใช้งาน</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+	        </div>
+    	</nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                <i class="fa fa-bars"></i>
+                <span class="sr-only">Toggle Menu</span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <a class="h5 text-dark px-2 mb-0 fw-bold" href="#">ระบบงานบริการสอบเทียบเครื่องมือ</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ms-auto">
+                    <li class="nav-item active">
+                        <a class="px-2 h5 text-dark" href="#">ปุณพจน์ นิกรนนท์</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="text-green" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+</body>
 </html>
+
+<script>
+    (function($) {
+
+"use strict";
+
+var fullHeight = function() {
+
+    $('.js-fullheight').css('height', $(window).height());
+    $(window).resize(function(){
+        $('.js-fullheight').css('height', $(window).height());
+    });
+
+};
+fullHeight();
+
+$('#sidebarCollapse').on('click', function () {
+  $('#sidebar').toggleClass('active');
+});
+
+})(jQuery);
+</script>
+
+<script>
+$(document).ready(function() {
+    $('li.active').each(function() {
+        $(this).find('.list-unstyled.collapse').addClass('show');
+    });
+});
+</script>
