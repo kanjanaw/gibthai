@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
+<?php   $pageName = "car-table";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
-<?php require('inc_user.php'); ?>
 
-<div class="container-inner">
+<div class="px-4">
     <div class="panel">
         <h4>ตารางการใช้งานรถยนต์  &nbsp;<input type="month" id="monthInput" name="start" min="2018-03" value="2023-04" /></h4>
 
@@ -463,11 +463,9 @@
             </nav>
 
         </div>
-
-
-
     </div>
     <!-- end: ตารางการใช้งานรถยนต์ -->
+</div>
 </div>
 
 </body>
