@@ -2,7 +2,11 @@ body {
   background: #fafbfc !important;
   overflow-x: hidden !important;
   font-family: "IBM Plex Sans Thai", sans-serif !important;
+<<<<<<< Updated upstream
   font-size: 0.85em !important;
+=======
+  font-size: 0.8em !important;
+>>>>>>> Stashed changes
 }
 
 button, .btn {
@@ -13,8 +17,14 @@ h6, .h6 {
   font-size: 0.95em !important;
 }
 h5, .h5 {
-  font-size: 1.15em !important;
+  font-size: 1.35em !important;
 }
+<<<<<<< Updated upstream
+=======
+h4, .h4 {
+  font-size: 1.6em !important;
+}
+>>>>>>> Stashed changes
 th {
   font-weight: 600 !important;
 }
@@ -307,7 +317,11 @@ th {
 }
 
 .text-green {
-  color: #00ba63;
+  color: #00ba63 !important;
+}
+
+.text-grey {
+  color: #888 !important;
 }
 
 .bg-black-333-50 {
@@ -366,6 +380,24 @@ th {
   #img-sent-form {
     width: 250px;
   }
+<<<<<<< Updated upstream
+=======
+  .button-5-group {
+    grid-template-columns: auto;
+  }
+  .service-status {
+    width: 100% !important;
+    font-size: 1.3em !important;
+  }
+  .progress-step {
+    width: 0.7rem !important;
+    height: 0.7rem !important;
+  }
+  .progress-step.focus {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+>>>>>>> Stashed changes
 }
 
 a.menu-sidebar {
@@ -425,6 +457,7 @@ a.menu-sidebar:active {
   padding: 1.5rem;
   border-radius: 5px;
   margin: 0.9rem 0rem;
+
 }
 
 .car-badge {
@@ -712,3 +745,256 @@ a.sidebar-menu:hover > span {
 
 
 
+<<<<<<< Updated upstream
+=======
+.wrapper {
+  width: 100%; }
+
+#sidebar {
+  min-width: 260px;
+  max-width: 260px;
+  background: #1d1919;
+  color: #9a9a9a;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%) !important;}
+  #sidebar.active {
+    margin-left: -260px; }
+  #sidebar .logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto; }
+    #sidebar .logo span {
+      display: block; }
+  #sidebar ul.components {
+    padding: 0; }
+    #sidebar ul li > ul > li {
+      margin-left: 10px !important; }
+    #sidebar ul li a {
+      padding: 8px 1.6em;
+      display: block;
+      color: #636363;
+      font-size:1em !important;
+      /* border-bottom: 1px solid #ededed; */
+    }
+      #sidebar ul li a:hover {
+      color: #00BA63;font-weight: 600;  }
+    #sidebar ul li.active > a {
+      color: #00BA63; font-weight: 600;}
+  @media (max-width: 991.98px) {
+    #sidebar {
+      margin-left: -260px; }
+      #sidebar.active {
+        margin-left: 0; } }
+
+a[data-toggle="collapse"] {
+  position: relative; }
+
+@media (max-width: 991.98px) {
+  #sidebarCollapse span {
+    display: none; }
+  }
+
+#content {
+  width: 100%;
+  padding: 0;
+  min-height: 100vh;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  overflow: auto;
+ }
+
+  .btn.btn-primary {
+    background: #00ba63;
+    border-color: #00ba63; }
+    .btn.btn-primary:hover, .btn.btn-primary:focus {
+      background: #00ba63 !important;
+      border-color: #00ba63 !important; }
+
+.navbar {
+  margin-bottom: 25px !important;
+  height: 60px;
+}
+
+.button-5-group {
+  display: grid;
+  grid-template-columns: auto auto auto auto !important;
+}
+
+#search-icon-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.select2-selection__arrow {
+  height: 26px;
+  position: absolute;
+  top: 5px;
+  right: 1px;
+  width: 20px;
+}
+
+.select2-container--default, .select2-selection--single {
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 0.9em;
+  border: 1px solid #d9d9d9;
+  height: 3em;
+  margin: 0.3em 0em;
+}
+
+.select2-container--default:hover, .select2-selection--single:hover {
+  border: 1px solid #08cb70;
+}
+
+.select2-selection .select2-selection--single {
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.service-status {
+  width: calc(100%/9);
+  color: #bbb;
+  margin: 0px 2px;
+  font-size: 1.1em;
+}
+
+.service-status > p {
+  font-size: 0.95em !important;
+}
+
+.service-status.active {
+  color: #444;
+}
+
+.service-status.active > .circle {
+  border: 1px solid #00ba7c;
+  color: #fff;
+  background-color: #00ba7c;
+}
+
+.service-status.active > .text-progress {
+  color: #00ba7c;
+}
+
+.circle {
+  border-radius: 50px;
+  border: 1px solid #bbb;
+  width: 25px !important;
+  height: 25px !important;
+  text-align: center;
+  line-height: 25px !important;
+  color: #bbb;
+  margin: 20px 0px;
+  margin-right: 10px;
+  font-weight: 400 !important;
+  font-size: 1em !important;
+}
+
+
+.text-progress {
+  color: #bbb;
+  font-size: 1.15em !important;
+  font-weight: 500 !important;
+}
+
+.progress, .progress-bar {
+  border-radius: 50px !important;
+}
+
+.progress-bar {
+  background: #348F50 !important;
+  background: linear-gradient(to right, #007444, #00BA63) !important;
+}
+
+.progress-tab {
+  height: 10px;
+  background: #ddd;
+  border-radius: 50px;
+  margin: 0px 2px;
+}
+
+.progress-tab.active {
+  background: linear-gradient(to right, #007444, #00BA63);
+}
+
+.progress-step {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  background-color: #ddd;
+  border-radius: 50px;
+}
+
+.progress-step.focus {
+  width: 2rem;
+  height: 2rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.2em;
+  vertical-align: middle;
+  padding: .3em 0em;
+}
+
+.progress-step.active {
+  background-color: #00ba7c;
+}
+
+.progress-badge {
+  border-radius: 50px;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.1em;
+  vertical-align: middle;
+  padding: .3em 0em;
+  background-color: #00ba7c;
+}
+
+.login-card {
+  border-radius: 18px !important;
+  border: none !important;
+  box-shadow: 3px 3px 22px 10px rgba(162,162,162,0.10);
+-webkit-box-shadow: 3px 3px 22px 10px rgba(162,162,162,0.10);
+-moz-box-shadow: 3px 3px 22px 10px rgba(162,162,162,0.10);
+}
+
+.login-form {
+  font-size: 1.05em !important;
+  border-radius: 10px !important;
+}
+
+.login-button {
+  font-size: 1.1em !important;
+  padding: 0.6em 0em !important;
+  border-radius: 10px !important;
+}
+
+.wrapper-pad {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #08CB70;
+  border-radius: 8px;
+}
+
+.signature-pad {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 150px;
+  z-index: 10;
+  border-radius: 8px;
+}
+>>>>>>> Stashed changes
