@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
+<?php   $pageName = "customer";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
-<?php require('inc_user.php'); ?>
 
-<div class="container-inner">
+
+<div class="px-4">
     <div class="breadcrumb" style="--bs-breadcrumb-divider: '>';">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -16,15 +17,19 @@
     </div>
 
     <div class="panel">
-        <div class="d-flex justify-content-between align-items-center">
-            <h4>ข้อมูลลูกค้าและคู่ค้า</h4>
+        <div class="d-flex justify-content-between align-items-center row">
+            <div class="col-md-6 col-12 text-center text-md-start">
+                <h4>ข้อมูลลูกค้าและคู่ค้า</h4>
+            </div>
             <!-- add new customer -->
-            <a class="btn-black bg-green-00 border-green-00" type="button" href="add-new-customer.php">เพิ่มลูกค้าใหม่</a>
+            <div class="col-md-6 col-12 text-center text-md-end">
+                <a class="btn-black bg-green-00 border-green-00" type="button" href="add-new-customer.php">เพิ่มลูกค้าใหม่</a>
+            </div>
         </div>
 
         <!-- table menu -->
         <div class="row d-flex align-items-center" id="datatable_length">
-            <div class="col-auto">
+            <div class="col-md-auto col-12 text-center pt-2 pt-md-0">
                 <label style="font-weight: 400">แสดงทีละ
                     <select name="datatable_length" aria-controls="datatable" class="form-or-style" id="form-tablelength">
                         <option value="10">10</option>
@@ -33,13 +38,11 @@
                     </select> รายการ
                 </label>
             </div>
-            <div class="col-auto px-1">
+            <div class="col-md-auto col-12 text-center text-md-start py-1 py-md-0">
                 <button class="btn-grey" type="button" >นำเข้า Excel</button>
-            </div>
-            <div class="col-auto">
                 <button class="btn-grey" type="button" >นำออก Excel</button>
             </div>
-            <div class="col-auto ms-auto">
+            <div class="col-md-auto col-12 ms-md-auto text-center py-1 py-md-0">
                 <button class="btn-grey px-5" type="button" data-bs-toggle="collapse" data-bs-target="#advanceSearch" aria-expanded="false" aria-controls="advanceSearch">
                 ค้นหาแบบมีเงื่อนไข&nbsp;  <i class="fa-solid fa-chevron-down"></i>
                 </button>
@@ -303,10 +306,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-12 d-flex justify-content-end align-items-center">
-                                <button class="btn-black px-5 float-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา
-                                </button>
+                            <div class="col-md-4 col-12 d-md-flex justify-content-center justify-content-md-end align-items-center mt-md-0 mt-2">
+                                <div class="d-grid gap-2">
+                                    <button class="btn-black px-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา
+                                    </button>
+                                </div>
                             </div>
                         </div>
                 </div>
@@ -316,7 +321,7 @@
 
         <!-- report table -->
         <div class="table-responsive">
-            <table class="table table-hover" id="customerTable">
+            <table class="table table-hover text-nowrap" id="customerTable">
             <thead>
                 <tr>
                 <th scope="col" data-field="companyId">รหัสบริษัท</th>
@@ -336,7 +341,14 @@
                     <td>99 หมู่ 18 ถนนพหลโยธิน</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="edit-customer.php" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12344</td>
@@ -345,7 +357,14 @@
                     <td>IBAAIN</td>
                     <td></td>
                     <td class="text-center">Inactive</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12343</td>
@@ -354,7 +373,14 @@
                     <td>99 หมู่ 7 ต.เขาสมอคอน</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12342</td>
@@ -363,7 +389,14 @@
                     <td>No. 77 , Pyidaungsu Yeiktha Road,</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12341</td>
@@ -372,7 +405,14 @@
                     <td>003 Ban chom cheng , KM6 Thadeua Road,</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12340</td>
@@ -381,7 +421,14 @@
                     <td>Floor 9, Srinagarind Hospital,</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12339</td>
@@ -390,7 +437,14 @@
                     <td>1/19 Moo 3 Soi 1 kaosean Rd.</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12338</td>
@@ -399,7 +453,14 @@
                     <td>10 Anson Road, #27-15 International Plaza</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12337</td>
@@ -408,7 +469,14 @@
                     <td>13/9 M.3, Sukhumvit Rd.</td>
                     <td></td>
                     <td class="text-center">Active</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
                 <tr>
                     <td>12336</td>
@@ -417,7 +485,14 @@
                     <td>454 Charan Sanit Wong Rd, Bang Ao, Bang Phlat</td>
                     <td></td>
                     <td class="text-center">Inactive</td>
-                    <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                    <td>
+                        <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </span>
+                        <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                            <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                        </span>
+                    </td>
                 </tr>
             </tbody>
             </table>
@@ -454,6 +529,10 @@
 
     </div>
 </div>
+</div>
+
 
 </body>
 </html>
+<?php require('inc_footer.php'); ?>
+
