@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <?php require('inc_header.php'); ?>
+    <?php   $pageName = "quotation";  ?>
   </head>
   <body>
     <?php require('inc_sidebar.php'); ?>
-    <?php require('inc_user.php'); ?>
 
-    <div class="container-inner">
+    <div class="px-4">
       <div class="breadcrumb" style="--bs-breadcrumb-divider: '>'">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -291,7 +291,7 @@
                       type="button"
                       class="btn-black"
                       data-bs-toggle="modal"
-                      data-bs-target="#searchCompanyForm"
+                      data-bs-target="#searchCompanyFormQuotation"
                     >
                       <i class="fa-solid fa-magnifying-glass"></i>&nbsp;
                       ค้นหาข้อมูลบริษัท
@@ -440,83 +440,6 @@
                 </div>
                 <!-- end: ข้อมูลลูกค้า -->
 
-                <!-- Modal search company form -->
-                <div
-                  class="modal fade"
-                  id="searchCompanyForm"
-                  tabindex="-1"
-                  aria-labelledby="searchCompanyForm"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                      <div class="modal-header border-0 bg-e5e5e5 py-2">
-                        <h6 class="py-2 fw-bold mb-0">ข้อมูลลูกค้า</h6>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body row">
-                        <div class="col-12 row">
-                          <div class="col-10">
-                            <input
-                              type="text"
-                              name=""
-                              class="form-or-style my-0"
-                              placeholder="ค้นหา"
-                            />
-                          </div>
-                          <div class="col-auto g-0">
-                            <button type="button" class="btn-black">
-                              <i class="fa-solid fa-magnifying-glass"></i>&nbsp;
-                              ค้นหา
-                            </button>
-                          </div>
-                        </div>
-
-                        <div class="table-responsive mt-4">
-                          <table class="table table-hover" id="contactTable">
-                            <thead>
-                              <tr>
-                                <th scope="col" data-field="companyId">
-                                  รหัสบริษัท
-                                </th>
-                                <th scope="col" data-field="companyName">
-                                  ชื่อบริษัท
-                                </th>
-                                <th scope="col" data-field="address">
-                                  ที่อยู่
-                                </th>
-                                <th scope="col" data-field="province">
-                                  จังหวัด
-                                </th>
-                                <th scope="col" data-field="zipcode">
-                                  รหัสไปรษณีย์
-                                </th>
-                                <th scope="col" data-field="tel">โทรศัพท์</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                          </table>
-                        </div>
-                      </div>
-                      <div class="modal-footer pt-0 border-0">
-                        <button
-                          type="button"
-                          class="btn-grey"
-                          data-bs-dismiss="modal"
-                        >
-                          ยกเลิก
-                        </button>
-                        <button type="button" class="btn-green">เลือก</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- end: Modal search company form -->
 
                 <!-- ข้อมูลผู้ติดต่อ -->
                 <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลผู้ติดต่อ</h6>
@@ -575,255 +498,181 @@
                 </div>
                 <!-- end: ข้อมูลผู้ติดต่อ -->
 
+
                 <!-- ข้อมูลรายการเครื่องมือสอบเทียบ -->
-                <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">
-                  ข้อมูลรายการเครื่องมือสอบเทียบ
-                </h6>
-                <!-- table menu -->
-                <div class="row d-flex align-items-center mb-2 mt-3">
-                  <div class="col-6">
-                    <input
-                      type="text"
-                      name=""
-                      class="form-or-style my-0"
-                      placeholder="ค้นหา"
-                    />
+                <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold">ข้อมูลรายการเครื่องมือสอบเทียบ</h6>
+                  <!-- table menu -->
+                  <div class="row d-flex align-items-center mb-2 mt-3" id="datatable_length">
+                      <div class="col-md-8 order-1 order-md-0 mt-2 mt-md-0">
+                          <div class="row">
+                              <div class="col-8">
+                                  <input type="text" name="" class="form-or-style my-0" placeholder="ค้นหา"/>
+                              </div>
+                              <div class="col-4">
+                                  <div class="d-grid d-md-inline">
+                                      <button type="button" class="btn-black"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-md-auto text-end ms-auto py-1 py-md-0 order-0 order-md-1">
+                          <a type="button" class="btn-black bg-blue border-blue" href="add-new-quotation-by-pipettes.php" data-bs-toggle="modal" data-bs-target="#addPipettesFormQuotation">เพิ่มรายการ</a>
+                      </div>
                   </div>
-                  <div class="col-auto g-0">
-                    <button type="button" class="btn-black">
-                      <i class="fa-solid fa-magnifying-glass"></i>&nbsp; ค้นหา
-                    </button>
+                  <!-- end: table menu -->
+
+                  <!-- pipettes table -->
+                  <div class="table-responsive mt-3">
+                      <table class="table table-hover text-nowrap" id="pipettesTypeTable">
+                      <thead>
+                          <tr>
+                          <th scope="col" data-field="">No</th>
+                          <th scope="col" data-field="">รายการเครื่องมือ</th>
+                          <th scope="col" data-field="">จำนวน</th>
+                          <th scope="col" data-field="">หน่วยนับ</th>
+                          <th scope="col" data-field="">ราคา/หน่วย</th>
+                          <th scope="col" data-field="">ส่วนลด (จำนวน)</th>
+                          <th scope="col" data-field="">ส่วนลด (%/ตัวเลข)</th>
+                          <th scope="col" data-field="">จำนวนเงิน</th>
+                          <th scope="col" data-field="">Action</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>"ประเภทเครื่องมือสอบเทียบ" "ยี่ห้อ" "รุ่น" "ขนาด" "หมายเลขเครื่อง" "รหัสเครื่องมือ" "จุดสอบเทียบ" "วิธีการสอบเทียบ"</td>
+                              <td><input class="form-or-style" type="number" value="4"></td>
+                              <td>
+                                  <select name="" id="" class="form-or-style">
+                                      <option value="">เครื่อง</option>
+                                      <option value="">ชิ้น</option>
+                                  </select>
+                              </td>
+                              <td><input class="form-or-style" type="text" value="2,000"></td>
+                              <td><input type="text" name="" class="form-or-style"/></td>
+                              <td>
+                                  <select name="" id="" class="form-or-style">
+                                      <option value="">%</option>
+                                      <option value="">ตัวเลข</option>
+                                  </select>
+                              </td>
+                              </td>
+                              <td>7,600</td>
+                              <td>
+                                  <a href="#" class="text-dark hover-text-red" title="สำเนา" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-copy"></i></a>
+                                  <a href="#" class="text-dark hover-text-red mx-1" title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top"><i class="fa-regular fa-trash-can"></i></a>
+                              </td>
+                          </tr>
+                      </tbody>
+                      </table>
                   </div>
-                  <div class="col-auto d-inline-block ms-auto"></div>
-                </div>
-                <!-- end: table menu -->
-                <!-- pipettes table -->
-                <div class="table-responsive mt-3">
-                  <table class="table table-hover" id="pipettesTypeTable">
-                    <thead>
-                      <tr>
-                        <th scope="col" data-field="">No</th>
-                        <th scope="col" data-field="">รายการเครื่องมือ</th>
-                        <th scope="col" data-field="">จำนวน</th>
-                        <th scope="col" data-field="">หน่วยนับ</th>
-                        <th scope="col" data-field="">ราคา/หน่วย</th>
-                        <th scope="col" data-field="">ส่วนลด</th>
-                        <th scope="col" data-field="">จำนวนเงิน</th>
-                        <th scope="col" data-field="">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>
-                          "ประเภทเครื่องมือสอบเทียบ" "ยี่ห้อ" "รุ่น" "ขนาด"
-                          "หมายเลขเครื่อง" "รหัสเครื่องมือ" "จุดสอบเทียบ"
-                          "วิธีการสอบเทียบ"
-                        </td>
-                        <td>4</td>
-                        <td>เครื่อง</td>
-                        <td>x,xxx</td>
-                        <td>xx</td>
-                        <td>xx,xxx</td>
-                        <td>
-                          <button class="btn my-0 py-0 hover-text-red">
-                            <i class="fa-regular fa-copy"></i> สำเนา
-                          </button>
-                          <button class="btn my-0 py-0 hover-text-red">
-                            <i class="fa-regular fa-trash-can"></i> ลบ
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- end: pipettes  table -->
-                <div class="row mt-4">
-                  <div class="col-md-6 col-12">
-                    <div class="row">
-                      <label for="" class="col-sm-4 col-form-label"
-                        >หมายเหตุในใบเสนอราคา :</label
-                      >
-                      <div class="col-sm-8">
-                        <textarea
-                          name=""
-                          id=""
-                          rows="8"
-                          class="form-or-style"
-                        ></textarea>
+                  <!-- end: pipettes  table -->
+                  <div class="row mt-4">
+                      <div class="col-md-6 col-12">
+                          <div class="row">
+                              <label for="" class="col-sm-4 col-form-label">หมายเหตุในใบเสนอราคา :</label>
+                              <div class="col-sm-8">
+                                  <textarea name="" id="" rows="8" class="form-or-style"></textarea>
+                              </div>
+                              <label for="" class="col-sm-4 col-form-label">เพิ่มเติม :</label>
+                              <div class="col-sm-8">
+                                  <textarea name="" id="" rows="4" class="form-or-style"></textarea>
+                              </div>
+                          </div>
                       </div>
-                      <label for="" class="col-sm-4 col-form-label"
-                        >เพิ่มเติม :</label
-                      >
-                      <div class="col-sm-8">
-                        <textarea
-                          name=""
-                          id=""
-                          rows="4"
-                          class="form-or-style"
-                        ></textarea>
+
+                      <div class="col-md-6 col-12">
+                          <div class="row">
+                              <label for="" class="col-sm-4 col-form-label">รูปแบบการคำนวณภาษีมูลค่าเพิ่ม :</label>
+                              <div class="col-sm-8">
+                                  <select name="" id="" class="form-or-style">
+                                          <option value="">option 1</option>
+                                          <option value="" selected>option 2</option>
+                                      </select>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">จำนวนเงินรวม :</label>
+                              <div class="col-sm-8">
+                                  <input type="text" name="" class="form-or-style" placeholder="xxx,xxx" disabled/>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">ส่วนลดรวม :</label>
+                              <div class="col-sm-8">
+                                  <input type="text" name="" class="form-or-style"/>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">จำนวนเงินรวมหักส่วนลด :</label>
+                              <div class="col-sm-8">
+                                  <input type="text" name="" class="form-or-style" placeholder="xxx,xxx" disabled/>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">ภาษีมูลค่าเพิ่ม :</label>
+                              <div class="col-sm-8">
+                                  <div class="input-group">
+                                      <select name="" id="" class="form-or-style w-25">
+                                          <option value="">0%</option>
+                                          <option value="" selected>7%</option>
+                                          <option value="">10%</option>
+                                      </select>
+                                      <input type="text" name="" class="form-or-style w-75"/>
+                                  </div>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">จำนวนเงินรวมทั้งสิ้น :</label>
+                              <div class="col-sm-8">
+                                  <input type="text" name="" class="form-or-style" placeholder="123,000" disabled/>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">จำนวนเงินรวมทั้งสิ้น (คำอ่าน) :</label>
+                              <div class="col-sm-8">
+                                  <p class="fst-italic py-2">หนึ่งแสนสองหมื่นสามพันบาท</p>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label">ลายเซ็น :</label>
+                              <div class="col-sm-8">
+                                  <div class="mb-1 form-check">
+                                      <input type="checkbox" class="form-check-input" id="signCheck1" checked>
+                                      <label class="form-check-label" for="signCheck1">พนักงานขาย</label>
+                                  </div>
+                                  <div class="mb-1 form-check">
+                                      <input type="checkbox" class="form-check-input" id="signCheck2">
+                                      <label class="form-check-label" for="signCheck2">ผู้จัดการขาย</label>
+                                  </div>
+                                  <div class="mb-1 form-check">
+                                      <input type="checkbox" class="form-check-input" id="signCheck3">
+                                      <label class="form-check-label" for="signCheck3">กรรมการผู้จัดการ</label>
+                                  </div>
+                              </div>
+
+                              <label for="" class="col-sm-4 col-form-label mt-4">รายละเอียด :</label>
+                              <div class="col-sm-8 mt-0 mt-md-4">
+                                  <div class="mb-1 form-check">
+                                      <input type="checkbox" class="form-check-input" id="dateCheck1" checked>
+                                      <label class="form-check-label" for="dateCheck1">แสดงวันที่ในใบเสนอราคา</label>
+                                  </div>
+                                  <div class="mb-1 form-check">
+                                      <input type="checkbox" class="form-check-input" id="dateCheck2">
+                                      <label class="form-check-label" for="dateCheck2">ไม่แสดงวันที่ในใบเสนอราคา</label>
+                                  </div>
+                              </div>
+
+                          </div>
                       </div>
-                    </div>
                   </div>
-
-                  <div class="col-md-6 col-12">
-                    <div class="row">
-                      <label for="" class="col-sm-4 col-form-label"
-                        >รูปแบบการคำนวณภาษีมูลค่าเพิ่ม :</label
-                      >
-                      <div class="col-sm-8">
-                        <input type="text" name="" class="form-or-style" />
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >จำนวนเงินรวม :</label
-                      >
-                      <div class="col-sm-8">
-                        <input
-                          type="text"
-                          name=""
-                          class="form-or-style"
-                          placeholder="xxx,xxx"
-                          disabled
-                        />
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >ส่วนลดรวม :</label
-                      >
-                      <div class="col-sm-8">
-                        <input type="text" name="" class="form-or-style" />
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >จำนวนเงินรวมหักส่วนลด :</label
-                      >
-                      <div class="col-sm-8">
-                        <input
-                          type="text"
-                          name=""
-                          class="form-or-style"
-                          placeholder="xxx,xxx"
-                          disabled
-                        />
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >ภาษีมูลค่าเพิ่ม :</label
-                      >
-                      <div class="col-sm-8">
-                        <div class="input-group">
-                          <select name="" id="" class="form-or-style w-25">
-                            <option value="">0%</option>
-                            <option value="" selected>7%</option>
-                            <option value="">10%</option>
-                          </select>
-                          <input
-                            type="text"
-                            name=""
-                            class="form-or-style w-75"
-                          />
-                        </div>
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >จำนวนเงินรวมทั้งสิ้น :</label
-                      >
-                      <div class="col-sm-8">
-                        <input
-                          type="text"
-                          name=""
-                          class="form-or-style"
-                          placeholder="123,000"
-                          disabled
-                        />
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >จำนวนเงินรวมทั้งสิ้น (คำอ่าน) :</label
-                      >
-                      <div class="col-sm-8">
-                        <p class="fst-italic py-2">หนึ่งแสนสองหมื่นสามพันบาท</p>
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label"
-                        >ลายเซ็น :</label
-                      >
-                      <div class="col-sm-8">
-                        <div class="mb-1 form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="signCheck1"
-                            checked
-                          />
-                          <label class="form-check-label" for="signCheck1"
-                            >พนักงานขาย</label
-                          >
-                        </div>
-                        <div class="mb-1 form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="signCheck2"
-                          />
-                          <label class="form-check-label" for="signCheck2"
-                            >ผู้จัดการขาย</label
-                          >
-                        </div>
-                        <div class="mb-1 form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="signCheck3"
-                          />
-                          <label class="form-check-label" for="signCheck3"
-                            >กรรมการผู้จัดการ</label
-                          >
-                        </div>
-                      </div>
-
-                      <label for="" class="col-sm-4 col-form-label mt-4"
-                        >รายละเอียด :</label
-                      >
-                      <div class="col-sm-8 mt-4">
-                        <div class="mb-1 form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="dateCheck1"
-                            checked
-                          />
-                          <label class="form-check-label" for="dateCheck1"
-                            >แสดงวันที่ในใบเสนอราคา</label
-                          >
-                        </div>
-                        <div class="mb-1 form-check">
-                          <input
-                            type="checkbox"
-                            class="form-check-input"
-                            id="dateCheck2"
-                          />
-                          <label class="form-check-label" for="dateCheck2"
-                            >ไม่แสดงวันที่ในใบเสนอราคา</label
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <!-- end: ข้อมูลรายการเครื่องมือสอบเทียบ -->
-                <div class="d-flex justify-content-end py-3 mt-3">
-                  <a type="button" class="btn-black bg-blue border-blue mx-2"
-                    >ใบเสนอราคา</a
-                  >
-                  <a type="button" class="btn-black">ส่งอีเมล PDF</a>
-                  <a type="button" class="btn-black mx-2">สำเนาใบเสนอราคา</a>
-                  <button type="button" class="btn-grey mx-2">ยกเลิก</button>
-                  <button type="button" class="btn-green">บันทึกข้อมูล</button>
+                <div class="row mt-3 pt-3 text-md-end text-center">
+                    <div class="col-12 d-flex justify-content-md-end justify-content-center">
+                        <div class="d-md-inline d-grid gap-1">
+                            <a type="button" class="btn-black bg-blue border-blue text-center">ใบเสนอราคา</a>
+                            <a type="button" class="btn-black text-center">ส่งอีเมล PDF</a>
+                            <a type="button" class="btn-black text-center">สำเนาใบเสนอราคา</a>
+                            <button type="button" class="btn-green btn-grey text-center order-last">ยกเลิก</button>
+                            <button type="button" class="btn-green text-center">บันทึกข้อมูล</button>
+                        </div>
+                    </div>
                 </div>
               </div>
-              <!-- end: ใบเสนอราคา tab -->
+            <!-- end: ใบเสนอราคา tab -->
 
               <!-- ประวัติการแก้ไขใบเสนอราคา -->
               <div class="tab-pane fade" id="quotationEdit-h" role="tabpanel">
@@ -832,14 +681,8 @@
                 </h6>
                 <!-- table menu -->
                 <div class="row d-flex align-items-center">
-                  <label style="font-weight: 400"
-                    >แสดงทีละ
-                    <select
-                      name="datatable_length"
-                      aria-controls="datatable"
-                      class="form-or-style"
-                      id="form-tablelength"
-                    >
+                  <label style="font-weight: 400">แสดงทีละ
+                    <select name="datatable_length" aria-controls="datatable" class="form-or-style"id="form-tablelength">
                       <option value="10">10</option>
                       <option value="25">25</option>
                       <option value="50">50</option>
@@ -914,5 +757,8 @@
         <!-- end: table menu -->
       </div>
     </div>
+    </div>
+
+
   </body>
 </html>

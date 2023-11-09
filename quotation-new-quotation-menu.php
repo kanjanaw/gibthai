@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head><?php require('inc_header.php'); ?>
+<?php   $pageName = "quotation";  ?>
 </head>
 <body>
 <?php require('inc_sidebar.php'); ?>
-<?php require('inc_user.php'); ?>
 
-<div class="container-inner">
+
+<div class="px-4">
     <div class="breadcrumb" style="--bs-breadcrumb-divider: '>';">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -21,30 +22,36 @@
             <h4>เพิ่มใบเสนอราคาใหม่</h4>
         </div>
 
-        <div class="my-4">
+        <div class="my-md-4 my-2">
             <h6 class="p-2 bg-e5e5e5 fw-bold mb-3">สร้างใบเสนอราคาใหม่</h6>
-            <div class="col-12 mb-3">
+            <div class="col-12 mb-3 text-center text-md-start">
                 <a class="btn-black bg-green-00 border-green-00" type="button" href="add-new-quotation.php">สร้างใบเสนอราคาใหม่</a>
             </div>
 
             <h6 class="mt-5 p-2 bg-e5e5e5 fw-bold mb-3">สร้างใบเสนอราคาใหม่ โดย Generate ข้อมูลจากเลขใบแจ้งรับบริการ หรือเลขที่งานบริการสอบเทียบ</h6>
                 <!-- table menu -->
-                <div class="row d-flex align-items-center">
-                    <div class="col-6">
-                        <input type="text" name="" class="form-or-style my-0" placeholder="ค้นหา"/>
+                <div class="row d-flex align-items-center mb-2 mt-3" id="datatable_length">
+                    <div class="col-md-8 order-1 order-md-0 mt-2 mt-md-0">
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" name="" class="form-or-style my-0" placeholder="ค้นหา"/>
+                            </div>
+                            <div class="col-4">
+                                <div class="d-grid d-md-inline">
+                                    <button type="button" class="btn-black"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-auto g-0">
-                        <button type="button" class="btn-black"><i class="fa-solid fa-magnifying-glass"></i>&nbsp;  ค้นหา</button>
-                    </div>
-                    <div class="col-auto d-inline-block ms-auto">
-                        <a type="button" class="btn-black bg-blue border-blue" href="add-new-quotation-by-pipettes.php">สร้างใบเสนอราคาใหม่จากใบงานบริการ</a>
+                    <div class="col-md-auto text-end ms-auto py-1 py-md-0 order-0 order-md-1">
+                        <a type="button" class="btn-black bg-blue border-blue mb-2" href="add-new-quotation-by-service.php">สร้างใบเสนอราคาใหม่จากใบงานบริการ</a>
                     </div>
                 </div>
                 <!-- end: table menu -->
 
                 <!-- report table -->
                 <div class="table-responsive mt-3">
-                    <table class="table table-striped" id="customerTable">
+                    <table class="table table-hover text-nowrap" id="customerTable">
                     <thead>
                         <tr>
                         <th scope="col" data-field="date">วันที่</th>
@@ -68,7 +75,14 @@
                             <td>-</td>
                             <td>สุเมธี</td>
                             <td class="text-center"><span class="green-badge">Status 1</span></td>
-                            <td><button class="btn my-0 py-0 hover-text-red"><i class="fa-regular fa-pen-to-square"></i> แก้ไข</button></td>
+                            <td>
+                                <span title="แก้ไข" data-bs-toggle="tooltip" data-bs-placement="top">
+                                    <a href="#" class="text-dark hover-text-red"><i class="fa-regular fa-pen-to-square"></i></a>
+                                </span>
+                                <span title="ลบ" data-bs-toggle="tooltip" data-bs-placement="top">
+                                    <a href="#" class="text-dark hover-text-red mx-2" data-bs-toggle="modal" data-bs-target="#deleteModal" ><i class="fa-regular fa-trash-can"></i></a>
+                                </span>
+                            </td>
                         </tr>
                     </tbody>
                     </table>
@@ -80,6 +94,8 @@
 
     </div>
 </div>
+</div>
 
 </body>
 </html>
+<?php require('inc_footer.php'); ?>
